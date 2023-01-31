@@ -1,0 +1,51 @@
+body,
+html {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #484c55;
+  height: 100vh;
+  margin: 0;
+}
+
+:focus {
+  outline: none;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  color: #484c55;
+}
+
+.page_wrapper {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+@media only screen and (min-width: 1200px) {
+  .page_wrapper {
+    margin-bottom: -360px;
+  }
+}
+
+/*Sub header */
+.subheader {
+  position: relative; /* Need this here so the position: absolute on subelements anchors here rather than to the browser viewport */
+  background: #474c55;
+  height: 70px;
+  color: #fff;
+  font-size: 28px;
+  padding-left: 15px;
+  line-height: 66px;
+}
+
+.subheader_label {
+  position: absolute;
+  left: 110px;
+  top: 25px;
+  font-size: 32px;
+  font-weight: 100;
+  color: #fff;
+}
