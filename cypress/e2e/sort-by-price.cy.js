@@ -50,4 +50,8 @@ describe('sorting', () => {
     // confirm the item prices are sorted from highest to lowest
     getPrices().should('be.descending')
   })
+
+  it('by name from A to Z')
+
+  it('by name from Z to A')
 })
