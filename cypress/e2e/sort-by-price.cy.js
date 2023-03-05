@@ -20,7 +20,14 @@ describe('sorting', () => {
     cy.location('pathname').should('equal', '/inventory.html')
     cy.log('**sort by price low to high**')
     // sort the items from low to high
+    cy.get('[data-test="product_sort_container"]').select('lohi')
     // confirm the item prices are sorted in ascending order
+    cy.get('.inventory_item_price')
+      .map('innerText')
+      .mapInvoke('slice', 1)
+      .map(Number)
+      .print('sorted prices %o')
+      .should('be.ascending')
   })
 
   it('by price highest to highest', () => {
@@ -32,6 +39,13 @@ describe('sorting', () => {
     cy.location('pathname').should('equal', '/inventory.html')
     cy.log('**sort by price low to high**')
     // sort the items from high to low price
+    cy.get('[data-test="product_sort_container"]').select('hilo')
     // confirm the item prices are sorted from highest to lowest
+    cy.get('.inventory_item_price')
+      .map('innerText')
+      .mapInvoke('slice', 1)
+      .map(Number)
+      .print('sorted prices %o')
+      .should('be.descending')
   })
 })
