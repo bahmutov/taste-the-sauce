@@ -11,41 +11,43 @@ import 'cypress-map'
 chai.use(require('chai-sorted'))
 
 describe('sorting', () => {
-  it('by price lowest to highest', () => {
+  beforeEach(() => {
     cy.log('**log in**')
     cy.visit('/')
     cy.get('[data-test="username"]').type('standard_user')
     cy.get('[data-test="password"]').type('secret_sauce')
     cy.get('[data-test="login-button"]').click()
     cy.location('pathname').should('equal', '/inventory.html')
-    cy.log('**sort by price low to high**')
-    // sort the items from low to high
-    cy.get('[data-test="product_sort_container"]').select('lohi')
-    // confirm the item prices are sorted in ascending order
-    cy.get('.inventory_item_price')
+  })
+
+  /**
+   * Sorts item by price
+   * @param {'lohi'|'hilo'} order
+   */
+  function sortByPrice(order) {
+    // confirm the argument value at runtime
+    expect(order, 'sort order').to.be.oneOf(['lohi', 'hilo'])
+    cy.log(`**sort by price ${order}**`)
+    cy.get('[data-test="product_sort_container"]').select(order)
+  }
+
+  function getPrices() {
+    return cy
+      .get('.inventory_item_price')
       .map('innerText')
       .mapInvoke('slice', 1)
       .map(Number)
       .print('sorted prices %o')
-      .should('be.ascending')
+  }
+
+  it('by price lowest to highest', () => {
+    sortByPrice('lohi')
+    getPrices().should('be.ascending')
   })
 
   it('by price highest to highest', () => {
-    cy.log('**log in**')
-    cy.visit('/')
-    cy.get('[data-test="username"]').type('standard_user')
-    cy.get('[data-test="password"]').type('secret_sauce')
-    cy.get('[data-test="login-button"]').click()
-    cy.location('pathname').should('equal', '/inventory.html')
-    cy.log('**sort by price low to high**')
-    // sort the items from high to low price
-    cy.get('[data-test="product_sort_container"]').select('hilo')
+    sortByPrice('hilo')
     // confirm the item prices are sorted from highest to lowest
-    cy.get('.inventory_item_price')
-      .map('innerText')
-      .mapInvoke('slice', 1)
-      .map(Number)
-      .print('sorted prices %o')
-      .should('be.descending')
+    getPrices().should('be.descending')
   })
 })
