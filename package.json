@@ -22,7 +22,9 @@
     "@babel/plugin-proposal-private-methods": "^7.13.0",
     "@babel/preset-env": "^7.13.12",
     "@babel/register": "^7.13.14",
+    "chai-sorted": "^0.2.0",
     "cypress": "^12.5.0",
+    "cypress-map": "^1.12.3",
     "prettier": "^2.8.3",
     "prop-types": "^15.7.2"
   },
