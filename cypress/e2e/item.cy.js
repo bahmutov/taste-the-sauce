@@ -14,11 +14,11 @@ beforeEach(() => {
 })
 
 it('has an item with details', () => {
-  // confirm there is an item in the inventory
-  // with:
-  //   name: "Sauce Labs Bike Light"
-  //   description: "A red light isn't the desired state in testing but it sure helps when riding your bike at night"
-  //   price: $9.99
+  // load the bike light JSON fixture file
+  // https://on.cypress.io/fixture
+  //
+  // and confirm there is an item in the inventory
+  // with the name, description, and price listed in teh fixture object
   // https://on.cypress.io/contains
   // https://on.cypress.io/within
 })
