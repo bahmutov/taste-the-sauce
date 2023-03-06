@@ -18,7 +18,7 @@ it('has an item with details', () => {
   // https://on.cypress.io/fixture
   //
   // and confirm there is an item in the inventory
-  // with the name, description, and price listed in teh fixture object
+  // with the name, description, and price listed in the fixture object
   // https://on.cypress.io/contains
   // https://on.cypress.io/within
 })
