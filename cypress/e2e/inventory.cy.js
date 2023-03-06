@@ -13,12 +13,15 @@ beforeEach(() => {
   cy.location('pathname').should('equal', '/inventory.html')
 })
 
-it('has an item with details', () => {
-  // load the bike light JSON fixture file
+it('has every item from the inventory', () => {
+  // load the inventory JSON fixture file
   // https://on.cypress.io/fixture
   //
-  // and confirm there is an item in the inventory
-  // with the name, description, and price listed in the fixture object
+  // iterate over every data item
+  //
+  // and confirm there is an item on the page
+  // with the name, description, and price listed
   // https://on.cypress.io/contains
   // https://on.cypress.io/within
+  // Note: check the properties in the inventory object
 })
