@@ -7,6 +7,8 @@
 describe('anonymous user', () => {
   it('gets an error trying to visit the inventory page', () => {
     cy.visit('/inventory.html')
+    // confirm we are on root page
+    // https://on.cypress.io/location
     // confirm the page shows an error
     // confirm the error message includes the page name
     // https://on.cypress.io/contains
