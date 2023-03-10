@@ -26,6 +26,11 @@ export const LoginPage = {
     LoginPage.getUsername().should('have.class', 'error')
     LoginPage.getPassword().should('have.class', 'error')
   },
+  /**
+   * Logs the user and caches the session
+   * @param {string} username
+   * @param {string} password
+   */
   login(username, password) {
     // https://on.cypress.io/session
     cy.session(`user ${username} login`, () => {
