@@ -8,7 +8,7 @@ import { LoginPage } from './login.page'
 
 // enable the test once you get the username and the password
 it.skip('logs out', () => {
-  LoginPage.login(/* username, password */)
+  LoginPage.login('standard_user', 'secret_sauce')
   cy.visit('/inventory.html')
   cy.location('pathname').should('equal', '/inventory.html')
   cy.contains('button', 'Open Menu').click()
