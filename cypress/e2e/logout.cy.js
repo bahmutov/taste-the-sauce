@@ -6,20 +6,20 @@
 
 import { LoginPage } from './login.page'
 
-it('logs out', () => {
-  // use LoginPage to log the standard user in
-  // LoginPage.login(username, password)
-  // confirm we are logged in by visiting the inventory page
-  // https://on.cypress.io/visit
-  // https://on.cypress.io/location
-  // open the hamburger menu
-  // https://on.cypress.io/contains
-  // https://on.cypress.io/click
-  // the menu should appear
-  // in the menu find the "Logout" option and click on it
-  // we should be transported back to the index page "/"
-  // Confirm that we cannot go to the inventory page again
-  // and that the right error message is shown
-  // https://on.cypress.io/visit
-  // LoginPage.showsError
+// enable the test once you get the username and the password
+it.skip('logs out', () => {
+  LoginPage.login(/* username, password */)
+  cy.visit('/inventory.html')
+  cy.location('pathname').should('equal', '/inventory.html')
+  cy.contains('button', 'Open Menu').click()
+  cy.get('.bm-menu-wrap')
+    .should('be.visible')
+    .contains('.menu-item', 'Logout')
+    .click()
+  cy.location('pathname').should('equal', '/')
+  // we cannot go to the inventory again
+  cy.visit('/inventory.html')
+  LoginPage.showsError(
+    "Epic sadface: You can only access '/inventory.html' when you are logged in.",
+  )
 })
