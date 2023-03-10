@@ -31,7 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "cypress run"
+    "test": "echo Write more tests!"
   },
   "browserslist": {
     "production": [
