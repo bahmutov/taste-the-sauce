@@ -20,11 +20,11 @@ $ npm install
 
 ## Run
 
-To start the application location
+To start the application if you are using Node v16 use `npm start` command. If you are using Node v17+ use `npm run start-18` command (because of this [SSL error](https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported)).
+
+In both cases, it should print
 
 ```
-$ npm start
-
 Compiled successfully!
 
 You can now view taste-the-sauce in the browser.
