@@ -28,29 +28,48 @@ describe('Product', () => {
     // the name and price of the item we are looking for
     const name = 'Sauce Labs Fleece Jacket'
     const price = '$49.99'
-    // select the inventory item with that name
-    // click on the title link to transition to the product view
+    cy.contains('.inventory_item', name)
+    // confirm the element has "data-itemid" attribute
+    // and its value is a string
+    // https://on.cypress.io/should
+    // https://glebbahmutov.com/cypress-examples/commands/assertions.html
+    //
+    // pass the value of the "data-itemid" attribute into a callback
+    // https://on.cypress.io/then
+    //
+    // find the inventory item again
+    // and inside find the anchor link element
     // https://on.cypress.io/contains
     // https://on.cypress.io/find
-    // https://on.cypress.io/click
-    //
+    cy.contains('.inventory_item', name)
+      .find('.inventory_item_label a')
+      // Since you know the item's id
+      // you can confirm the exact value of the "id" attribute
+      // (it has item id with title link text)
+      //
+      // click on the anchor link
+      .click()
     // confirm we transition to the item's page
     // https://on.cypress.io/location
-    //
-    // we do not know the item id, thus check
-    // that the search parameters in the URL
-    // simply have id=number
+    cy.location('pathname').should('equal', '/inventory-item.html')
+    // because we know the item's id
+    // confirm the URL search parameter string
+    // includes "id=item id" substring
     //
     // confirm the item details component is visible
-    //
-    // and inside has the item's name (with large size class)
-    // and the item's expected price
-    // https://on.cypress.io/within
-    //
-    // go back to the inventory page by clicking
-    // "Back to products" button
-    //
-    // confirm we are back at the inventory page
-    //
+    cy.get('#inventory_item_container .inventory_details')
+      .should('be.visible')
+      .within(() => {
+        // and inside has the item's name (with large size class)
+        // and the item's expected price
+        // https://on.cypress.io/within
+        cy.contains('.inventory_details_name.large_size', name)
+        cy.contains('.inventory_details_price', price)
+      })
   })
+  // go back to the inventory page by clicking
+  // "Back to products" button
+  cy.get('[data-test="back-to-products"]').click()
+  // confirm we are back at the inventory page
+  cy.location('pathname').should('equal', '/inventory.html')
 })
