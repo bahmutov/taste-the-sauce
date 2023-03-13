@@ -1,6 +1,3 @@
-// @ts-check
-/// <reference types="cypress" />
-
 export const LoginPage = {
   getUsername() {
     return cy.get('[data-test="username"]')
@@ -21,17 +18,18 @@ export const LoginPage = {
   getLogin() {
     return cy.get('[data-test=login-button]')
   },
-  showsError(text) {
+  /**
+   * @param text The expected error message
+   */
+  showsError(text: string) {
     cy.contains('[data-test=error]', text).should('be.visible')
     LoginPage.getUsername().should('have.class', 'error')
     LoginPage.getPassword().should('have.class', 'error')
   },
   /**
    * Logs the user and caches the session
-   * @param {string} username
-   * @param {string} password
    */
-  login(username, password) {
+  login(username: string, password: string) {
     // https://on.cypress.io/session
     cy.session(`user ${username} login`, () => {
       cy.log('**log in**')
