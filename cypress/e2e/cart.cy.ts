@@ -1,14 +1,6 @@
 import { LoginPage } from './login.page'
 import { InventoryPage } from './inventory.page'
-
-/**
- * create a small type on the fly using jsdoc comment
- * just to help type check help us
- */
-interface LoginInfo {
-  username: string
-  password: string
-}
+import { LoginInfo } from '.'
 
 describe('Cart', () => {
   const user: LoginInfo = Cypress.env('users').standard

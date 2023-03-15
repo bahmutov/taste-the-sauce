@@ -1,3 +1,6 @@
+// @ts-check
+/// <reference types="cypress" />
+
 export const LoginPage = {
   getUsername() {
     return cy.get('[data-test="username"]')
@@ -18,9 +21,6 @@ export const LoginPage = {
   getLogin() {
     return cy.get('[data-test=login-button]')
   },
-  /**
-   * @param text The expected error message
-   */
   showsError(text: string) {
     cy.contains('[data-test=error]', text).should('be.visible')
     LoginPage.getUsername().should('have.class', 'error')
@@ -28,6 +28,8 @@ export const LoginPage = {
   },
   /**
    * Logs the user and caches the session
+   * @param username
+   * @param password
    */
   login(username: string, password: string) {
     // https://on.cypress.io/session
@@ -45,10 +47,7 @@ export const LoginPage = {
       {
         validate() {
           cy.log('**validate login session**')
-          // try visiting the page and
-          // confirm the browser stays at /inventory.html
-          cy.visit('/inventory.html')
-          cy.location('pathname').should('equal', '/inventory.html')
+          cy.getCookie('session-username').should('exist')
         },
       },
     )
