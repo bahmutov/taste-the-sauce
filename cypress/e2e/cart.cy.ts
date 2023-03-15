@@ -1,7 +1,7 @@
 import { LoginPage } from './login.page'
 import { InventoryPage } from './inventory.page'
 import { LoginInfo } from '.'
-// import the inventory list from "cypress/fixtures/inventory.json"
+// import inventory data
 
 describe('Cart', () => {
   const user: LoginInfo = Cypress.env('users').standard
