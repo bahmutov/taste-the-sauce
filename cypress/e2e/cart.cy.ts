@@ -1,7 +1,7 @@
 import { LoginPage } from './login.page'
 import { InventoryPage } from './inventory.page'
 import { LoginInfo } from '.'
-// import inventory data
+import { InventoryData } from '../../src/utils/InventoryData'
 
 describe('Cart', () => {
   const user: LoginInfo = Cypress.env('users').standard
@@ -30,7 +30,9 @@ describe('Cart', () => {
       // find an id for each inventory item by name
       // and store the ids in the array "ids"
       // const ids = ...
-      //
+      const ids = items.map(
+        (name) => Cypress._.find(InventoryData, { name })!.id,
+      )
       // add each item to cart using the InventoryPage object
       items.forEach(InventoryPage.addItemToCart)
       cy.log('**added all items to cart**')
@@ -65,14 +67,20 @@ describe('Cart', () => {
       })
       // get the application window object
       // https://on.cypress.io/window
-      // get its property "localStorage"
-      // https://on.cypress.io/its
-      // and call the method "getItem" to get the cart contents
-      // https://on.cypress.io/invoke
-      // confirm the list has the expected product ids
-      // https://glebbahmutov.com/cypress-examples/commands/assertions.html
-      // Tip: local storage usually has stringified JSON
-      // @ts-ignore
+      cy.window()
+        // get its property "localStorage"
+        // https://on.cypress.io/its
+        .its('localStorage')
+        // and call the method "getItem" to get the cart contents
+        // https://on.cypress.io/invoke
+        .invoke('getItem', 'cart-contents')
+        .should('exist')
+        // confirm the list has the expected product ids
+        // https://glebbahmutov.com/cypress-examples/commands/assertions.html
+        // Tip: local storage usually has stringified JSON
+        // @ts-ignore
+        .then(JSON.parse)
+        .should('deep.equal', ids)
     },
   )
 })
