@@ -1,6 +1,7 @@
 import { LoginPage } from './login.page'
 import { InventoryPage } from './inventory.page'
 import { LoginInfo } from '.'
+// import the inventory list from "cypress/fixtures/inventory.json"
 
 describe('Cart', () => {
   const user: LoginInfo = Cypress.env('users').standard
@@ -26,6 +27,10 @@ describe('Cart', () => {
         'Sauce Labs Bolt T-Shirt',
         'Sauce Labs Onesie',
       ]
+      // find an id for each inventory item by name
+      // and store the ids in the array "ids"
+      // const ids = ...
+      //
       // add each item to cart using the InventoryPage object
       items.forEach(InventoryPage.addItemToCart)
       cy.log('**added all items to cart**')
@@ -64,9 +69,10 @@ describe('Cart', () => {
       // https://on.cypress.io/its
       // and call the method "getItem" to get the cart contents
       // https://on.cypress.io/invoke
-      // confirm the list is [0, 1, 2]
+      // confirm the list has the expected product ids
       // https://glebbahmutov.com/cypress-examples/commands/assertions.html
       // Tip: local storage usually has stringified JSON
+      // @ts-ignore
     },
   )
 })
