@@ -35,7 +35,7 @@ describe('Checkout', () => {
     cy.location('pathname').should('equal', '/checkout-step-one.html')
     // fill the check out form with values "Joe Smith 90210"
     // and submit the form
-    cy.fillForm()
+    cy.fillForm().submit()
     // we should be on the checkout step two page
     cy.location('pathname').should('equal', '/checkout-step-two.html')
     // the summary page shows the expected number of cart items

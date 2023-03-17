@@ -5,8 +5,8 @@ Cypress.Commands.add('fillForm', () => {
     cy.get('#first-name').type('Joe')
     cy.get('#last-name').type('Smith')
     cy.get('#postal-code').type('90210')
-    cy.get('input[type=submit]')
-      .should('have.attr', 'value', 'Continue')
-      .click()
   })
+  // the command yields the result of the last command
+  // which is cy.within which yields its subject,
+  // thus this command yields the form element!
 })
