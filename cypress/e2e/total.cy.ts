@@ -33,10 +33,8 @@ describe('Checkout', () => {
     cy.visit('/checkout-step-one.html')
 
     // fill the check out form with values "Joe Smith 90210"
-    // and click the "Continue" element after confirming
-    // the "Continue" element has the right "value" attribute
-    // https://on.cypress.io/within
-    cy.fillForm().submit()
+    // and submit the form
+    cy.fillForm()
     // we should be on the checkout step two page
     // https://on.cypress.io/location
     cy.location('pathname').should('equal', '/checkout-step-two.html')
