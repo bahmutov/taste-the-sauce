@@ -10,5 +10,5 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["cypress/e2e/*.js", "cypress/e2e/*.ts"]
+  "include": ["cypress/support/*.ts", "cypress/e2e/*.js", "cypress/e2e/*.ts"]
 }

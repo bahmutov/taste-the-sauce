@@ -36,14 +36,7 @@ describe('Checkout', () => {
     // and click the "Continue" element after confirming
     // the "Continue" element has the right "value" attribute
     // https://on.cypress.io/within
-    cy.get('.checkout_info_wrapper form').within(() => {
-      cy.get('#first-name').type('Joe')
-      cy.get('#last-name').type('Smith')
-      cy.get('#postal-code').type('90210')
-      cy.get('input[type=submit]')
-        .should('have.attr', 'value', 'Continue')
-        .click()
-    })
+    cy.fillForm()
     // we should be on the checkout step two page
     // https://on.cypress.io/location
     cy.location('pathname').should('equal', '/checkout-step-two.html')
