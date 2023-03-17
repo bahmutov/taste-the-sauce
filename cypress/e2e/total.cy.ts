@@ -36,7 +36,7 @@ describe('Checkout', () => {
     // and click the "Continue" element after confirming
     // the "Continue" element has the right "value" attribute
     // https://on.cypress.io/within
-    cy.fillForm()
+    cy.fillForm().submit()
     // we should be on the checkout step two page
     // https://on.cypress.io/location
     cy.location('pathname').should('equal', '/checkout-step-two.html')
