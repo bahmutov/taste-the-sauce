@@ -38,7 +38,13 @@ describe('Checkout', () => {
     cy.get('.checkout_info_wrapper form')
       .find('input[type=submit]')
       .should('have.attr', 'value', 'Continue')
-    cy.get('.checkout_info_wrapper form').fillForm().submit()
+    cy.get('.checkout_info_wrapper form')
+      .fillForm({
+        '#first-name': 'Joe',
+        '#last-name': 'Smith',
+        '#postal-code': '90210',
+      })
+      .submit()
     // we should be on the checkout step two page
     // https://on.cypress.io/location
     cy.location('pathname').should('equal', '/checkout-step-two.html')
