@@ -23,7 +23,7 @@
     "@babel/preset-env": "^7.13.12",
     "@babel/register": "^7.13.14",
     "chai-sorted": "^0.2.0",
-    "cypress": "^12.7.0",
+    "cypress": "^12.8.1",
     "cypress-map": "^1.13.0",
     "prettier": "^2.8.3",
     "prop-types": "^15.7.2",
