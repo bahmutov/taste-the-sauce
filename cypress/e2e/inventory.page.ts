@@ -1,3 +1,6 @@
+// @ts-check
+/// <reference types="cypress" />
+
 export const InventoryPage = {
   getCartBadge() {
     return cy.get('.shopping_cart_link').find('.shopping_cart_badge')
