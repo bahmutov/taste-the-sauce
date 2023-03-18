@@ -1,6 +1,3 @@
-// @ts-check
-/// <reference types="cypress" />
-
 export const LoginPage = {
   getUsername() {
     return cy.get('[data-test="username"]')
