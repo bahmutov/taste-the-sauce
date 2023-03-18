@@ -1,12 +1,4 @@
-// @ts-check
-
-// enables intelligent code completion for Cypress commands
-// https://on.cypress.io/intelligent-code-completion
-/// <reference types="cypress" />
-
-import { LoginPage } from './login.page'
-// https://github.com/bahmutov/cypress-map
-import 'cypress-map'
+import { LoginPage } from '../../support/pages/login.page'
 
 describe('Products', () => {
   // create a small type on the fly using jsdoc comment

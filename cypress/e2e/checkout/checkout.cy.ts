@@ -1,8 +1,7 @@
-/// <reference path="../support/index.d.ts" />
-import { LoginPage } from './login.page'
-import { LoginInfo } from '.'
-import { CheckoutPage } from './checkout.page'
-import { InventoryData } from '../../src/utils/InventoryData'
+import { LoginPage } from '../../support/pages/login.page'
+import { LoginInfo } from '..'
+import { CheckoutPage } from '../../support/pages/checkout.page'
+import { InventoryData } from '../../../src/utils/InventoryData'
 
 describe('Checkout', () => {
   const user: LoginInfo = Cypress.env('users').standard

@@ -1,14 +1,14 @@
-Cypress.Commands.add(
-  'fillForm',
-  { prevSubject: 'element' },
-  ($form, inputs) => {
-    cy.wrap($form, { log: false }).within(() => {
-      // iterate over the input fields
-      // and type into each selector (key) the value
-      // @ts-ignore
-      Cypress._.forEach(inputs, (value, selector) => {
-        cy.get(selector).type(value)
-      })
-    })
-  },
-)
+// first import the 3rd party Cypress plugins
+// to make them available in every command
+
+// https://github.com/bahmutov/cypress-data-session
+import 'cypress-data-session'
+// https://github.com/bahmutov/cypress-map
+import 'cypress-map'
+
+// https://www.chaijs.com/plugins/chai-sorted/
+// @ts-ignore
+chai.use(require('chai-sorted'))
+
+// import custom commands
+import './commands'

@@ -1,9 +1,3 @@
-// @ts-check
-
-// enables intelligent code completion for Cypress commands
-// https://on.cypress.io/intelligent-code-completion
-/// <reference types="cypress" />
-
 beforeEach(() => {
   cy.log('**log in**')
   cy.visit('/')

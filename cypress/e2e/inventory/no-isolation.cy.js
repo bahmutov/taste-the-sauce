@@ -1,40 +1,18 @@
-// https://github.com/bahmutov/cypress-map
-import 'cypress-map'
-
-// https://www.chaijs.com/plugins/chai-sorted/
-// @ts-ignore
-chai.use(require('chai-sorted'))
-
-describe('sorting', () => {
-  let sessionCookie: Cypress.Cookie
-
-  beforeEach(() => {
-    if (sessionCookie) {
-      cy.setCookie('session-username', sessionCookie.value, sessionCookie)
-      cy.visit('/inventory.html')
-    } else {
-      cy.log('**log in**')
-      cy.visit('/')
-      cy.get('[data-test="username"]').type('standard_user')
-      cy.get('[data-test="password"]').type('secret_sauce')
-      cy.get('[data-test="login-button"]').click()
-      cy.location('pathname').should('equal', '/inventory.html')
-      cy.getCookie('session-username')
-        .should('exist')
-        .then((cookie) => {
-          if (cookie) {
-            sessionCookie = cookie
-            console.log(cookie)
-          }
-        })
-    }
+describe('sorting', { testIsolation: false }, () => {
+  before(() => {
+    cy.log('**log in**')
+    cy.visit('/')
+    cy.get('[data-test="username"]').type('standard_user')
+    cy.get('[data-test="password"]').type('secret_sauce')
+    cy.get('[data-test="login-button"]').click()
+    cy.location('pathname').should('equal', '/inventory.html')
   })
 
   /**
    * Sorts item by price or name
-   * @param order Sort order value
+   * @param {'lohi'|'hilo'|'az'|'za'} order
    */
-  function sortBy(order: 'lohi' | 'hilo' | 'az' | 'za') {
+  function sortBy(order) {
     // confirm the argument value at runtime
     expect(order, 'sort order').to.be.oneOf(['lohi', 'hilo', 'az', 'za'])
     cy.log(`**sort by ${order}**`)

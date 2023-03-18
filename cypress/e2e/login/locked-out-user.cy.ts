@@ -1,8 +1,4 @@
-// @ts-check
-
-// enables intelligent code completion for Cypress commands
-// https://on.cypress.io/intelligent-code-completion
-/// <reference types="cypress" />
+import { LoginPage } from '../../support/pages/login.page'
 
 it('shows a login error', () => {
   cy.visit('/')
@@ -43,8 +39,6 @@ it('shows a login error', () => {
     .should('not.have.class', 'error')
     .and('have.value', 'secret_sauce')
 })
-
-import { LoginPage } from './login.page'
 
 it('shows a login error refactored', () => {
   cy.visit('/')

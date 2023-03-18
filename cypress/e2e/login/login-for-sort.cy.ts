@@ -1,34 +1,33 @@
-// @ts-check
+describe('sorting', () => {
+  let sessionCookie: Cypress.Cookie
 
-// enables intelligent code completion for Cypress commands
-// https://on.cypress.io/intelligent-code-completion
-/// <reference types="cypress" />
-
-// https://github.com/bahmutov/cypress-map
-import 'cypress-map'
-
-// https://github.com/bahmutov/cypress-data-session
-import 'cypress-data-session'
-
-// https://www.chaijs.com/plugins/chai-sorted/
-// @ts-ignore
-chai.use(require('chai-sorted'))
-
-describe('sorting', { testIsolation: false }, () => {
-  before(() => {
-    cy.log('**log in**')
-    cy.visit('/')
-    cy.get('[data-test="username"]').type('standard_user')
-    cy.get('[data-test="password"]').type('secret_sauce')
-    cy.get('[data-test="login-button"]').click()
-    cy.location('pathname').should('equal', '/inventory.html')
+  beforeEach(() => {
+    if (sessionCookie) {
+      cy.setCookie('session-username', sessionCookie.value, sessionCookie)
+      cy.visit('/inventory.html')
+    } else {
+      cy.log('**log in**')
+      cy.visit('/')
+      cy.get('[data-test="username"]').type('standard_user')
+      cy.get('[data-test="password"]').type('secret_sauce')
+      cy.get('[data-test="login-button"]').click()
+      cy.location('pathname').should('equal', '/inventory.html')
+      cy.getCookie('session-username')
+        .should('exist')
+        .then((cookie) => {
+          if (cookie) {
+            sessionCookie = cookie
+            console.log(cookie)
+          }
+        })
+    }
   })
 
   /**
    * Sorts item by price or name
-   * @param {'lohi'|'hilo'|'az'|'za'} order
+   * @param order Sort order value
    */
-  function sortBy(order) {
+  function sortBy(order: 'lohi' | 'hilo' | 'az' | 'za') {
     // confirm the argument value at runtime
     expect(order, 'sort order').to.be.oneOf(['lohi', 'hilo', 'az', 'za'])
     cy.log(`**sort by ${order}**`)

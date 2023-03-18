@@ -1,12 +1,6 @@
-// @ts-check
-
-// enables intelligent code completion for Cypress commands
-// https://on.cypress.io/intelligent-code-completion
-/// <reference types="cypress" />
-
 // import the bike light JSON fixture file
 // using the relative path
-import item from '../fixtures/bike-light.json'
+import item from '../../fixtures/bike-light.json'
 
 beforeEach(() => {
   cy.log('**log in**')

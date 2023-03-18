@@ -1,9 +1,3 @@
-// @ts-check
-
-// enables intelligent code completion for Cypress commands
-// https://on.cypress.io/intelligent-code-completion
-/// <reference types="cypress" />
-
 interface Item {
   name: string
   desc: string

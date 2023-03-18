@@ -1,16 +1,3 @@
-// @ts-check
-
-// enables intelligent code completion for Cypress commands
-// https://on.cypress.io/intelligent-code-completion
-/// <reference types="cypress" />
-
-// https://github.com/bahmutov/cypress-map
-import 'cypress-map'
-
-// https://www.chaijs.com/plugins/chai-sorted/
-// @ts-ignore
-chai.use(require('chai-sorted'))
-
 /**
  * Sorts inventory by the given sort order
  * @param {'lohi'|'hilo'|'az'|'za'} sortOrder
