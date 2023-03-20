@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "types": ["cypress", "cypress-map"],
+    "target": "es2016",
+    "strict": true,
+    "allowJs": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "paths": {
+      "@support/*": ["../cypress/support/*"],
+      "@fixtures/*": ["../cypress/fixtures/*"]
+    }
+  },
+  "include": [
+    "cypress/support/**/*.ts",
+    "cypress/e2e/**/*.js",
+    "cypress/e2e/**/*.ts"
+  ]
+}
