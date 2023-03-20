@@ -8,12 +8,16 @@
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "paths": {
+      "@support/*": ["../cypress/support/*"],
+      "@fixtures/*": ["../cypress/fixtures/*"]
+    }
   },
   "include": [
-    "cypress/support/*.ts",
+    "cypress/support/**/*.ts",
     "cypress/e2e/**/*.js",
-    "cypress/e2e/**/*.ts",
-    "cypress/support/pages/checkout.page.ts"
+    "cypress/e2e/**/*.ts"
   ]
 }
