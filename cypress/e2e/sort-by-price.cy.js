@@ -45,7 +45,7 @@ describe('sorting', () => {
     getPrices().should('be.ascending')
   })
 
-  it('by price highest to highest', () => {
+  it('by price highest to lowest', () => {
     sortByPrice('hilo')
     // confirm the item prices are sorted from highest to lowest
     getPrices().should('be.descending')
