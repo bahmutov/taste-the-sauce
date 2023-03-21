@@ -4,15 +4,15 @@ import { InventoryPage } from '@support/pages/inventory.page'
 import { InventoryData } from '@fixtures/inventory-data'
 import { CheckoutPage } from '@support/pages/checkout.page'
 
-const user: LoginInfo = Cypress.env('users').problem
+const user: LoginInfo = Cypress.env('users').glitch
 // pick a random item to buy
 const item = Cypress._.sample(InventoryData)
 
-// add more assertions to the this test
-// or to the code it calls to understand
-// exactly where the application goes wrong
+// why does this test work?
+// it is a little bit strange and "jumpy" with weird delays
+// can you make it fail if the performance is too slow?
 
-it('works for user problem user', () => {
+it('works for performance glitch user', { viewportHeight: 1200 }, () => {
   LoginPage.login(user.username, user.password)
   cy.visit('/inventory.html')
   InventoryPage.addItemToCart(item!.name)
