@@ -10,7 +10,7 @@ describe('Empty cart', () => {
   }
 
   // change the application until this test passes
-  it.skip('disables the Checkout button', () => {
+  it('disables the Checkout button', () => {
     LoginPage.login(user.username, user.password)
     cy.visit('/cart.html')
     InventoryPage.getCartBadge().should('not.exist')

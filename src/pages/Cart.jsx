@@ -1,16 +1,16 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-import { ROUTES } from "../utils/Constants";
-import { ShoppingCart } from "../utils/shopping-cart";
-import { InventoryData } from "../utils/InventoryData";
-import CartItem from "../components/CartItem";
-import SwagLabsFooter from "../components/Footer";
-import HeaderContainer from "../components/HeaderContainer";
-import Button, { BUTTON_SIZES, BUTTON_TYPES } from "../components/Button";
-import "./Cart.css";
+import React from 'react'
+import { withRouter } from 'react-router-dom'
+import { ROUTES } from '../utils/Constants'
+import { ShoppingCart } from '../utils/shopping-cart'
+import { InventoryData } from '../utils/InventoryData'
+import CartItem from '../components/CartItem'
+import SwagLabsFooter from '../components/Footer'
+import HeaderContainer from '../components/HeaderContainer'
+import Button, { BUTTON_SIZES, BUTTON_TYPES } from '../components/Button'
+import './Cart.css'
 
 const Cart = ({ history }) => {
-  const contents = ShoppingCart.getCartContents();
+  const contents = ShoppingCart.getCartContents()
 
   return (
     <div id="page_wrapper" className="page_wrapper">
@@ -29,8 +29,8 @@ const Cart = ({ history }) => {
               <Button
                 label="Continue Shopping"
                 onClick={(evt) => {
-                  evt.preventDefault();
-                  history.push(ROUTES.INVENTORY);
+                  evt.preventDefault()
+                  history.push(ROUTES.INVENTORY)
                 }}
                 size={BUTTON_SIZES.MEDIUM}
                 testId="continue-shopping"
@@ -42,12 +42,13 @@ const Cart = ({ history }) => {
                 // but is there for backwards compatibility
                 customClass="checkout_button"
                 onClick={(evt) => {
-                  evt.preventDefault();
-                  history.push(ROUTES.CHECKOUT_STEP_ONE);
+                  evt.preventDefault()
+                  history.push(ROUTES.CHECKOUT_STEP_ONE)
                 }}
                 size={BUTTON_SIZES.MEDIUM}
                 testId="checkout"
                 type={BUTTON_TYPES.ACTION}
+                disabled={contents.length === 0}
               />
             </div>
           </div>
@@ -55,7 +56,7 @@ const Cart = ({ history }) => {
       </div>
       <SwagLabsFooter />
     </div>
-  );
-};
+  )
+}
 
-export default withRouter(Cart);
+export default withRouter(Cart)

@@ -4,7 +4,7 @@
   outline: none;
   padding: 6px 28px;
   font-size: 14px;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   display: inline-block;
   text-decoration: none;
   text-transform: uppercase;
@@ -50,6 +50,10 @@
 
 .btn_large {
   width: 100%;
+}
+
+.checkout_button:disabled {
+  cursor: not-allowed;
 }
 
 @media only screen and (max-width: 900px) {
