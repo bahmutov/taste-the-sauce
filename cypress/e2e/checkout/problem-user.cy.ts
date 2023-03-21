@@ -4,18 +4,18 @@ import { InventoryPage } from '@support/pages/inventory.page'
 import { InventoryData } from '@fixtures/inventory-data'
 import { CheckoutPage } from '@support/pages/checkout.page'
 
-const user: LoginInfo = Cypress.env('users').glitch
+const user: LoginInfo = Cypress.env('users').problem
 // pick a random item to buy
 const item = Cypress._.sample(InventoryData)
 
-// why does this test work?
-// it is a little bit strange and "jumpy" with weird delays
-// can you make it fail if the performance is too slow?
+// add more assertions to the this test
+// or to the code it calls to understand
+// exactly where the application goes wrong
 
-// only to show the custom cy.visit page load timeout
-it.skip('works for performance glitch user', { viewportHeight: 1200 }, () => {
+// shows the problem on the checkout page
+it.skip('works for user problem user', { viewportHeight: 1200 }, () => {
   LoginPage.login(user.username, user.password)
-  cy.visit('/inventory.html', { timeout: 3_000 })
+  cy.visit('/inventory.html')
   InventoryPage.addItemToCart(item!.name)
   cy.visit('/checkout-step-one.html')
   CheckoutPage.fillInformationForm().submit()
