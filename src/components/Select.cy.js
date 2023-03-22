@@ -18,11 +18,19 @@ it('shows the select component', () => {
   // mount the Select component
   // passing options and the active option props
   // also pass a test id and "onChange" handler
-  //
+  cy.mount(
+    <Select
+      options={options}
+      activeOption={activeOption}
+      testId="test-select"
+      onChange={select}
+    />,
+  )
   // find the <select> element with your data test id
   // and select the "Z to A" option
   // https://on.cypress.io/select
-  //
+  cy.get('select[data-test=test-select]').select('Z to A')
   // get the selectOption stub and confirm it was called
   // with the "z to a" argument
+  cy.get('@selectOption').should('have.been.calledWith', 'z to a')
 })
