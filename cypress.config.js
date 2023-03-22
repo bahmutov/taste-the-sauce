@@ -33,11 +33,4 @@ module.exports = defineConfig({
       return config
     },
   },
-
-  component: {
-    devServer: {
-      framework: 'create-react-app',
-      bundler: 'webpack',
-    },
-  },
 })
