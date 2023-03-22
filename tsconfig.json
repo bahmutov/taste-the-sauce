@@ -18,6 +18,7 @@
   "include": [
     "cypress/support/**/*.ts",
     "cypress/e2e/**/*.js",
-    "cypress/e2e/**/*.ts"
+    "cypress/e2e/**/*.ts",
+    "cypress/support/component.js"
   ]
 }
