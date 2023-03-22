@@ -10,5 +10,12 @@ declare namespace Cypress {
      *  cy.get('form').fillForm({ '#name': 'Joe' }).submit()
      */
     fillForm(selectorsValues: object): Chainable<JQuery<HTMLFormElement>>
+
+    /**
+     * Returns elements that have "data-test" attribute with the given value
+     * @example
+     *  getByTest('checkout').should('be.visible')
+     */
+    getByTest(testId: string): Chainable<JQuery<HTMLElement>>
   }
 }

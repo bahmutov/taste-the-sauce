@@ -64,7 +64,7 @@ describe('Product', () => {
       })
     // go back to the inventory page by clicking
     // "Back to products" button
-    cy.get('[data-test="back-to-products"]').click()
+    cy.getByTest('back-to-products').click()
     // confirm we are back at the inventory page
     cy.location('pathname').should('equal', '/inventory.html')
   })

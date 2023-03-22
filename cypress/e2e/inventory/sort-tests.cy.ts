@@ -5,9 +5,9 @@ describe('sorting', () => {
       setup() {
         cy.log('**log in**')
         cy.visit('/')
-        cy.get('[data-test="username"]').type('standard_user')
-        cy.get('[data-test="password"]').type('secret_sauce')
-        cy.get('[data-test="login-button"]').click()
+        cy.getByTest('username').type('standard_user')
+        cy.getByTest('password').type('secret_sauce')
+        cy.getByTest('login-button').click()
         cy.location('pathname').should('equal', '/inventory.html')
         // the value yielded by the last command
         // will be saved in memory as data session "user session"
@@ -32,7 +32,7 @@ describe('sorting', () => {
     // confirm the argument value at runtime
     expect(order, 'sort order').to.be.oneOf(['lohi', 'hilo', 'az', 'za'])
     cy.log(`**sort by ${order}**`)
-    cy.get('[data-test="product_sort_container"]').select(order)
+    cy.getByTest('product_sort_container').select(order)
   }
 
   function getPrices() {

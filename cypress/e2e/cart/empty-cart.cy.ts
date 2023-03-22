@@ -9,12 +9,11 @@ describe('Empty cart', () => {
     throw new Error('Missing the standard user')
   }
 
-  // change the application until this test passes
   it('disables the Checkout button', () => {
     LoginPage.login(user.username, user.password)
     cy.visit('/cart.html')
     InventoryPage.getCartBadge().should('not.exist')
     // confirm the user can see the disabled button
-    cy.get('[data-test="checkout"]').should('be.visible').and('be.disabled')
+    cy.getByTest('checkout').should('be.visible').and('be.disabled')
   })
 })

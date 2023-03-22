@@ -1,9 +1,9 @@
 beforeEach(() => {
   cy.log('**log in**')
   cy.visit('/')
-  cy.get('[data-test="username"]').type('standard_user')
-  cy.get('[data-test="password"]').type('secret_sauce')
-  cy.get('[data-test="login-button"]').click()
+  cy.getByTest('username').type('standard_user')
+  cy.getByTest('password').type('secret_sauce')
+  cy.getByTest('login-button').click()
   cy.location('pathname').should('equal', '/inventory.html')
   // load the bike light JSON fixture file
   // https://on.cypress.io/fixture

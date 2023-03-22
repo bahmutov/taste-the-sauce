@@ -9,21 +9,21 @@ if (!user) {
 
 it('shows a login error', () => {
   cy.visit('/')
-  cy.get('[data-test="username"]').type(user.username)
-  cy.get('[data-test="password"]').type(user.password)
+  cy.getByTest('username').type(user.username)
+  cy.getByTest('password').type(user.password)
   // initially there should be no errors
   // Tip: code this section after finishing checking the errors
   cy.log('**there are no errors**')
   cy.contains('[data-test=error]', 'locked out').should('not.exist')
-  cy.get('[data-test="username"]').should('not.have.class', 'error')
-  cy.get('[data-test="password"]').should('not.have.class', 'error')
+  cy.getByTest('username').should('not.have.class', 'error')
+  cy.getByTest('password').should('not.have.class', 'error')
   // click on the login button
   // https://on.cypress.io/click
-  cy.get('[data-test="login-button"]').click()
+  cy.getByTest('login-button').click()
   // confirm the page shows errors and stays on login URL
   cy.log('**shows errors**')
-  cy.get('[data-test="username"]').should('have.class', 'error')
-  cy.get('[data-test="password"]').should('have.class', 'error')
+  cy.getByTest('username').should('have.class', 'error')
+  cy.getByTest('password').should('have.class', 'error')
   cy.location('pathname').should('equal', '/')
   // confirm there is an error message
   // and click its "close" button after 1 second delay
@@ -39,10 +39,10 @@ it('shows a login error', () => {
   // confirm the errors go away, but the input fields are not cleared
   cy.log('**errors go away**')
   cy.contains('[data-test=error]', 'locked out').should('not.exist')
-  cy.get('[data-test="username"]')
+  cy.getByTest('username')
     .should('not.have.class', 'error')
     .and('have.value', user.username)
-  cy.get('[data-test="password"]')
+  cy.getByTest('password')
     .should('not.have.class', 'error')
     .and('have.value', user.password)
 })
@@ -56,7 +56,7 @@ it('shows a login error refactored', () => {
   LoginPage.noErrors()
   // click on the login button
   // https://on.cypress.io/click
-  cy.get('[data-test="login-button"]').click()
+  cy.getByTest('login-button').click()
   // confirm the page shows errors and stays on login URL
   cy.log('**shows errors**')
   LoginPage.getUsername().should('have.class', 'error')

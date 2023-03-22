@@ -13,7 +13,7 @@ export const LoginPage = {
     return cy.get(LoginPage.selectors.password)
   },
   getError() {
-    return cy.get('[data-test=error]')
+    return cy.getByTest('error')
   },
   noErrors() {
     cy.log('**there are no errors**')
@@ -23,7 +23,7 @@ export const LoginPage = {
   },
   // new methods
   getLogin() {
-    return cy.get('[data-test=login-button]')
+    return cy.getByTest('login-button')
   },
   showsError(text: string) {
     cy.contains('[data-test=error]', text).should('be.visible')
@@ -46,6 +46,9 @@ export const LoginPage = {
           [LoginPage.selectors.username]: username,
           [LoginPage.selectors.password]: password,
         })
+        // confirm the fields were entered correctly
+        LoginPage.getUsername().should('have.value', username)
+        LoginPage.getPassword().should('have.value', password)
         LoginPage.getLogin().click()
         cy.location('pathname').should('equal', '/inventory.html')
       },
