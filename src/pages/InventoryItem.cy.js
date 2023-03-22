@@ -1,5 +1,9 @@
 import InventoryItem from './InventoryItem'
 import { InventoryData } from '../utils/InventoryData'
+// unfortunately, our component specs are bundled using app's bundler
+// that does not "understand" our tsconfig path aliases
+// thus need to use relative paths
+import { InventoryPage } from '../../cypress/support/pages/inventory.page'
 
 describe('InventoryItem', { viewportHeight: 1000 }, () => {
   it('shows an item', () => {
@@ -29,15 +33,27 @@ describe('InventoryItem', { viewportHeight: 1000 }, () => {
   it('adds an item to the cart and then removes it', () => {
     // mount an inventory item with id 1
     // cy.mountWithRouter
-    //
+    cy.mountWithRouter(<InventoryItem search="id=1" />)
     // find the button with text "Add to cart"
     // and click on it
-    //
+    cy.contains('button', 'Add to cart').click()
     // confirm the cart badge is visible and has 1
     // Tip: you can use page objects in this test
+    InventoryPage.getCartBadge().should('be.visible').and('have.text', 1)
+    // find the button with text "Remove" and click on it
+    cy.contains('button', 'Remove').click()
+    // the cart badge should be gone
+    InventoryPage.getCartBadge().should('not.exist')
+  })
+
+  it('stores the cart items in the local storage', () => {
+    cy.mountWithRouter(<InventoryItem search="id=1" />)
+    cy.contains('button', 'Add to cart').click()
+    // get the "cart-contents" from the local storage
+    // and verify it contains an array with just number 1 inside
     //
     // find the button with text "Remove" and click on it
     //
-    // the cart badge should be gone
+    // verify the local storage has cart contents as an empty list
   })
 })
