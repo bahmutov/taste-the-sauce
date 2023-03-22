@@ -23,7 +23,7 @@ describe('sorting', () => {
     // confirm the item prices are sorted in ascending order
   })
 
-  it('by price highest to highest', () => {
+  it('by price highest to lowest', () => {
     cy.log('**log in**')
     cy.visit('/')
     cy.get('[data-test="username"]').type('standard_user')
