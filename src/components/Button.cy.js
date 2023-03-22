@@ -31,17 +31,19 @@ it('does not click the disabled button', () => {
   // with an alias "click"
   // https://on.cypress.io/stub
   // https://on.cypress.io/as
-  //
+  cy.mount(<Button label="disabled" disabled onClick={cy.stub().as('click')} />)
   // query the button by text and confirm it is disabled
   // https://glebbahmutov.com/cypress-examples/commands/assertions.html
-  //
-  // Change Button.css to not allow cursor
-  // when _any_ button is disabled
-  // and confirm the button in this test has the expected cursor CSS
-  //
-  // click the button
-  // Tip: you need to force Cypress to click the disabled element
-  //
+  cy.contains('button', 'disabled')
+    .should('be.disabled')
+    // Change Button.css to not allow cursor
+    // when _any_ button is disabled
+    // and confirm the button in this test has the expected cursor CSS
+    .and('have.css', 'cursor', 'not-allowed')
+    // click the button
+    // Tip: you need to force Cypress to click the disabled element
+    .click({ force: true })
   // get the click prop stub by its alias
   // and confirm it was never called
+  cy.get('@click').should('not.be.called')
 })

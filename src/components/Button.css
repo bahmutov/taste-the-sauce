@@ -52,7 +52,7 @@
   width: 100%;
 }
 
-.checkout_button:disabled {
+button:disabled {
   cursor: not-allowed;
 }
 
