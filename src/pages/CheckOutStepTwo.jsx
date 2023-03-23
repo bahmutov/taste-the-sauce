@@ -24,7 +24,8 @@ const CheckOutStepTwo = ({ history }) => {
   let orderTotal = 0
 
   for (const curItem in contents) {
-    orderTotal = orderTotal + InventoryData[contents[curItem].id].price
+    const item = contents[curItem]
+    orderTotal = orderTotal + InventoryData[item.id].price * item.n
     if (isProblemUser()) {
       // double up for the problem user
       orderTotal = orderTotal + InventoryData[contents[curItem].id].price
