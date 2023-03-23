@@ -1,9 +1,24 @@
-# name: ci
-# on: [push]
-# jobs:
+name: ci
+on: [push]
+jobs:
+  # run end-to-end tests using the standard workflow
+  # https://github.com/bahmutov/cypress-workflows
+  e2e:
+    uses: bahmutov/cypress-workflows/.github/workflows/standard.yml@v1
+    with:
+      # check the spec types in the "build" step
+      # since we don't have any specific build for our app
+      # don't forget to start the application
+      # and wait for the "http://127.0.0.1:3000" to respond
+      # Note: GitHub Actions have Node v18 installed
+      build: npm run lint
+      start: npm run start-18
+      wait-on: 'http://127.0.0.1:3000'
 
-# run end-to-end tests using the standard workflow
-# https://github.com/bahmutov/cypress-workflows
-
-# in a separate job, run component tests
-# using the standard workflow
+  # in a separate job, run component tests
+  # using the standard workflow
+  # https://github.com/bahmutov/cypress-workflows
+  components:
+    uses: bahmutov/cypress-workflows/.github/workflows/standard.yml@v1
+    with:
+      component: true
