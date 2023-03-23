@@ -1,4 +1,3 @@
-// https://github.com/bahmutov/cypress-map
 import 'cypress-map'
 import { Route, BrowserRouter } from 'react-router-dom'
 import { mount } from 'cypress/react'
