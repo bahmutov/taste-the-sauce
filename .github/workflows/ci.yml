@@ -1,0 +1,9 @@
+# name: ci
+# on: [push]
+# jobs:
+
+# run end-to-end tests using the standard workflow
+# https://github.com/bahmutov/cypress-workflows
+
+# in a separate job, run component tests
+# using the standard workflow
