@@ -39,4 +39,14 @@ describe('CartItem', () => {
     // and an element with class "removed_cart_item" should be there instead
     cy.get('.removed_cart_item')
   })
+
+  it('changes the item quantity', () => {
+    // pick an item from the inventory list
+    const item = InventoryData[2]
+    // mount the cart item (with the router), passing the item as a prop
+    //
+    // confirm the item is on the page
+    // and the quantity is 1 initially
+    // and we change it to 5
+  })
 })
