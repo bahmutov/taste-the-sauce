@@ -52,4 +52,32 @@ describe('Checkout', () => {
     // confirm the page shows the expected item total
     cy.contains('.summary_subtotal_label', '$' + sum)
   })
+
+  it('can purchase two bike lights', () => {
+    const name = 'Sauce Labs Bike Light'
+    // find the item in the inventory
+    //
+    // visit the inventory page
+    //
+    // use the inventory POM to add the item to the cart
+    // and confirm the cart badge shows 1
+    // before clicking on it
+    //
+    // the app moves to the cart page
+    //
+    // where the cart item shows value 1
+    // that you can change to 2
+    //
+    // click the checkout button
+    //
+    // use the checkout POM to fill the user information and submit it
+    //
+    // the app moves to the checkout step two
+    //
+    // the cart item should have the item by name
+    // with value of 2
+    //
+    // compute the expected price by multiplying the item's price by 2
+    // the total item price should show the expected formatted price string
+  })
 })
