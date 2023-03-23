@@ -1,4 +1,4 @@
-describe('sorting', () => {
+describe('sorting tests', () => {
   beforeEach(() => {
     cy.dataSession({
       name: 'user session',

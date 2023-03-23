@@ -1,8 +1,8 @@
-describe('sorting', () => {
+describe('sorting session', () => {
   beforeEach(() => {
     // use cy.session to log in and store the browser state
     // https://on.cypress.io/session
-    cy.session('user session', () => {
+    cy.session('user sorting session', () => {
       cy.log('**log in**')
       cy.visit('/')
       cy.getByTest('username').type('standard_user')

@@ -1,4 +1,4 @@
-describe('sorting', { testIsolation: false }, () => {
+describe('sort without test isolation', { testIsolation: false }, () => {
   before(() => {
     cy.log('**log in**')
     cy.visit('/')

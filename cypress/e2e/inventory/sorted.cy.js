@@ -42,7 +42,7 @@ function confirmSorted(sortOrder) {
   }
 }
 
-describe('sorting', () => {
+describe('sorted', () => {
   it('by price', () => {
     cy.visit('/')
     // Tip: grab the username and the password from the login page
