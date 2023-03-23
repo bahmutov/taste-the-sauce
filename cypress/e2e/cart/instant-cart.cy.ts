@@ -24,7 +24,9 @@ describe('Cart', () => {
     // find an id for each inventory item by name
     // and store the ids in the array "ids"
     // const ids = ...
-    const ids = items.map((name) => Cypress._.find(InventoryData, { name })!.id)
+    const ids = items
+      .map((name) => Cypress._.find(InventoryData, { name })!.id)
+      .map((id) => ({ id, n: 1 }))
     // set the ids in the local storage item "cart-contents"
     // Tip: local storage usually has stringified data
     window.localStorage.setItem('cart-contents', JSON.stringify(ids))
@@ -47,7 +49,7 @@ describe('Cart', () => {
           // and confirm that within the item the name
           // is correct and the quantity is 1
           cy.contains('.inventory_item_name', itemName)
-          cy.contains('.cart_quantity', 1)
+          cy.get('.cart_quantity').should('have.value', 1)
         })
     })
   })

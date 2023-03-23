@@ -48,7 +48,10 @@ describe('Cart', () => {
       cy.window()
         .its('ShoppingCart')
         .invoke('getCartContents')
-        .should('deep.equal', [2, 4])
+        .should('deep.equal', [
+          { id: 2, n: 1 },
+          { id: 4, n: 1 },
+        ])
 
       cy.log('**visit the cart page**')
       // visit the cart page

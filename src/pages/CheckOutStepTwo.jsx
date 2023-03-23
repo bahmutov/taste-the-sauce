@@ -1,15 +1,15 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-import { isProblemUser } from "../utils/Credentials";
-import { ROUTES } from "../utils/Constants";
-import { ShoppingCart } from "../utils/shopping-cart";
-import { InventoryData } from "../utils/InventoryData";
-import CartItem from "../components/CartItem";
-import SwagLabsFooter from "../components/Footer";
-import HeaderContainer from "../components/HeaderContainer";
-import Button, { BUTTON_SIZES, BUTTON_TYPES } from "../components/Button";
-import "./CheckOutStepTwo.css";
+import React from 'react'
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { isProblemUser } from '../utils/Credentials'
+import { ROUTES } from '../utils/Constants'
+import { ShoppingCart } from '../utils/shopping-cart'
+import { InventoryData } from '../utils/InventoryData'
+import CartItem from '../components/CartItem'
+import SwagLabsFooter from '../components/Footer'
+import HeaderContainer from '../components/HeaderContainer'
+import Button, { BUTTON_SIZES, BUTTON_TYPES } from '../components/Button'
+import './CheckOutStepTwo.css'
 
 const CheckOutStepTwo = ({ history }) => {
   const clearCart = () => {
@@ -17,21 +17,21 @@ const CheckOutStepTwo = ({ history }) => {
     // No cart clear on order complete for the problem user
     if (!isProblemUser()) {
       // Wipe out our shopping cart
-      ShoppingCart.resetCart();
+      ShoppingCart.resetCart()
     }
-  };
-  const contents = ShoppingCart.getCartContents();
-  let orderTotal = 0;
+  }
+  const contents = ShoppingCart.getCartContents()
+  let orderTotal = 0
 
   for (const curItem in contents) {
-    orderTotal = orderTotal + InventoryData[contents[curItem]].price;
+    orderTotal = orderTotal + InventoryData[contents[curItem].id].price
     if (isProblemUser()) {
       // double up for the problem user
-      orderTotal = orderTotal + InventoryData[contents[curItem]].price;
+      orderTotal = orderTotal + InventoryData[contents[curItem].id].price
     }
   }
 
-  const orderTax = (orderTotal * 0.08).toFixed(2);
+  const orderTax = (orderTotal * 0.08).toFixed(2)
 
   return (
     <div id="page_wrapper" className="page_wrapper">
@@ -46,7 +46,7 @@ const CheckOutStepTwo = ({ history }) => {
               <div className="cart_quantity_label">QTY</div>
               <div className="cart_desc_label">DESCRIPTION</div>
               {contents.map((item, i) => {
-                return <CartItem key={i} item={InventoryData[item]} />;
+                return <CartItem key={i} item={InventoryData[item.id]} />
               })}
             </div>
             <div className="summary_info">
@@ -70,8 +70,8 @@ const CheckOutStepTwo = ({ history }) => {
                   customClass="cart_cancel_link"
                   label="Cancel"
                   onClick={(evt) => {
-                    evt.preventDefault();
-                    history.push(ROUTES.INVENTORY);
+                    evt.preventDefault()
+                    history.push(ROUTES.INVENTORY)
                   }}
                   size={BUTTON_SIZES.MEDIUM}
                   testId="cancel"
@@ -81,9 +81,9 @@ const CheckOutStepTwo = ({ history }) => {
                   customClass="cart_button"
                   label="Finish"
                   onClick={(evt) => {
-                    evt.preventDefault();
-                    clearCart();
-                    history.push(ROUTES.CHECKOUT_COMPLETE);
+                    evt.preventDefault()
+                    clearCart()
+                    history.push(ROUTES.CHECKOUT_COMPLETE)
                   }}
                   size={BUTTON_SIZES.MEDIUM}
                   testId="finish"
@@ -96,8 +96,8 @@ const CheckOutStepTwo = ({ history }) => {
       </div>
       <SwagLabsFooter />
     </div>
-  );
-};
+  )
+}
 CheckOutStepTwo.propTypes = {
   /**
    * The history
@@ -105,6 +105,6 @@ CheckOutStepTwo.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-};
+}
 
-export default withRouter(CheckOutStepTwo);
+export default withRouter(CheckOutStepTwo)

@@ -19,7 +19,7 @@ describe('Checkout', () => {
   it('goes through the check out pages', { viewportHeight: 1200 }, () => {
     // grab the "id" property from each item in the InventoryData array
     // Tip: I told you Lodash is a super neat library
-    const ids = Cypress._.map(InventoryData, 'id')
+    const ids = Cypress._.map(InventoryData, 'id').map((id) => ({ id, n: 1 }))
     // set the ids in the local storage item "cart-contents"
     // Tip: local storage usually has stringified data
     window.localStorage.setItem('cart-contents', JSON.stringify(ids))

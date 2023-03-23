@@ -22,7 +22,7 @@ const Cart = ({ history }) => {
               <div className="cart_quantity_label">QTY</div>
               <div className="cart_desc_label">DESCRIPTION</div>
               {contents.map((item, i) => (
-                <CartItem key={i} item={InventoryData[item]} showButton />
+                <CartItem key={i} item={InventoryData[item.id]} showButton />
               ))}
             </div>
             <div className="cart_footer">

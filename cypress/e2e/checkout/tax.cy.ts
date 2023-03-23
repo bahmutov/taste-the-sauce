@@ -23,7 +23,7 @@ describe('Checkout', () => {
     const pickedItems = Cypress._.sampleSize(InventoryData, 3)
     // grab the "id" property from each item in the picked items
     // Tip: I told you Lodash is a super neat library
-    const ids = Cypress._.map(pickedItems, 'id')
+    const ids = Cypress._.map(pickedItems, 'id').map((id) => ({ id, n: 1 }))
     // set the ids in the local storage item "cart-contents"
     // Tip: local storage usually has stringified data
     window.localStorage.setItem('cart-contents', JSON.stringify(ids))

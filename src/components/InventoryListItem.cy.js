@@ -26,7 +26,9 @@ describe('InventoryListItem', () => {
     // by importing the ShoppingCart component
     // and invoking its methods, like getCartContents()
     // and isItemInCart(item id)
-    cy.wrap(ShoppingCart).invoke('getCartContents').should('deep.equal', [3])
+    cy.wrap(ShoppingCart)
+      .invoke('getCartContents')
+      .should('deep.equal', [{ id: 3, n: 1 }])
     cy.wrap(ShoppingCart).invoke('isItemInCart', 3).should('be.true')
   })
 })
