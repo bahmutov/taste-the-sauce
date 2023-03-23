@@ -1,0 +1,52 @@
+import { ShoppingCart } from './shopping-cart'
+
+describe('ShoppingCart', () => {
+  // confirm the shopping cart is empty initially
+  beforeEach(() => {
+    // initially the cart should be an empty list
+    // call the ShoppingCart.getCartContents
+    // and confirm it is []
+  })
+
+  it('adds items one by one', () => {
+    // add items with id 1 and 4
+    //
+    // get the shopping cart contents again
+    // it should be [1, 4]
+  })
+
+  it('overwrites the shopping cart', () => {
+    // set the cart contents to be array [2, 5]
+    //
+    // get the shopping cart contents again
+    // it should be [2, 5]
+  })
+
+  it('checks if an item is in the cart', () => {
+    // set the cart contents to be array [2, 5]
+    //
+    // confirm the shopping cart has item with id 2 and 4
+    // but does not have an item with id 1
+  })
+
+  it('removes an item by id', () => {
+    // set the cart contents to be array [2, 5]
+    //
+    // remove an item with id 2 from the cart
+    //
+    // the cart should have list [5]
+  })
+
+  it('saves the cart in the local storage', () => {
+    // set the cart contents to be array [2, 5]
+    const items = [2, 5]
+    // get the local storage item "cart-contents"
+    // it should be a string equal to the serialized items array
+    // tip: all methods are synchronous, so we can directly
+    // call the "localStorage.getItem" and compare the value
+  })
+
+  // Bonus: shopping cart can have listeners
+  // that will be notified whenever something changes
+  it('notifies the listeners on cart changes')
+})
