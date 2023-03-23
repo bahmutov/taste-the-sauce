@@ -7,13 +7,13 @@
 }
 
 .cart_quantity {
-  box-sizing: border-box;
-  text-align: center;
+  /* box-sizing: border-box; */
+  /* text-align: center; */
   font-size: 22px;
   border: 2px solid #ededed;
   padding: 5px 20px;
   height: 40px;
-  width: 70px;
+  min-width: 80px;
 }
 
 .cart_item_label > a {

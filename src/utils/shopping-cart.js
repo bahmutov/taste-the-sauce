@@ -36,6 +36,22 @@ export class ShoppingCart {
     return curContents.indexOf(itemId) >= 0
   }
 
+  static setQuantity(id, n) {
+    // get the current cart contents
+    const curContents = ShoppingCart.getCartContents()
+    // find the item id property "id" equal to the value id
+    const item = curContents.find((x) => x.id === id)
+    console.log({ id, n, curContents, item })
+    // do nothing if there is no such item
+    if (!item) {
+      return
+    }
+    // change the "n" property to the argument n
+    item.n = n
+    // We modified our cart, so store it now
+    ShoppingCart.setCartContents(curContents)
+  }
+
   static getCartContents() {
     // pull out our current cart contents
     let curContents = window.localStorage.getItem('cart-contents')

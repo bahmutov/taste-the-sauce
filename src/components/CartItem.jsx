@@ -1,45 +1,62 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-import { isProblemUser } from "../utils/Credentials";
-import { ROUTES } from "../utils/Constants";
-import { ShoppingCart } from "../utils/shopping-cart";
-import Button, { BUTTON_SIZES, BUTTON_TYPES } from "./Button";
-import "./CartItem.css";
+import React, { useState } from 'react'
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { isProblemUser } from '../utils/Credentials'
+import { ROUTES } from '../utils/Constants'
+import { ShoppingCart } from '../utils/shopping-cart'
+import Button, { BUTTON_SIZES, BUTTON_TYPES } from './Button'
+import './CartItem.css'
 
 const CartItem = ({ item, history, showButton }) => {
-  const [itemVisible, setItemVisible] = useState(true);
+  const [itemVisible, setItemVisible] = useState(true)
+  const [quantity, setQuantity] = useState(1)
 
   if (!item) {
     // Hide this if the item is invalid
-    setItemVisible(false);
+    setItemVisible(false)
   }
 
   const removeFromCart = (itemId) => {
-    ShoppingCart.removeItem(itemId);
-    setItemVisible(false);
-  };
+    ShoppingCart.removeItem(itemId)
+    setItemVisible(false)
+  }
 
   if (itemVisible) {
-    const { id, name, desc, price } = item;
-    let linkId = id;
+    const { id, name, desc, price } = item
+    let linkId = id
 
     if (isProblemUser()) {
-      linkId += 1;
+      linkId += 1
     }
 
-    const itemLink = `${ROUTES.INVENTORY_LIST}?id=${linkId}`;
+    const itemLink = `${ROUTES.INVENTORY_LIST}?id=${linkId}`
+
+    const shoppingCartItem = ShoppingCart.getCartContents().find(
+      (x) => x.id === id,
+    )
 
     return (
       <div className="cart_item">
-        <div className="cart_quantity">1</div>
+        <input
+          type="number"
+          className="cart_quantity"
+          value={shoppingCartItem.n}
+          onChange={(evt) => {
+            const n = Number.isNaN(evt.target.valueAsNumber)
+              ? 0
+              : evt.target.valueAsNumber
+            ShoppingCart.setQuantity(id, n)
+            setQuantity(n)
+          }}
+        />
+        {/* <div className="cart_quantity">1</div> */}
         <div className="cart_item_label">
           <a
             href="#"
             id={`item_${id}_title_link`}
             onClick={(evt) => {
-              evt.preventDefault();
-              history.push(itemLink);
+              evt.preventDefault()
+              history.push(itemLink)
             }}
           >
             <div className="inventory_item_name">{name}</div>
@@ -51,7 +68,7 @@ const CartItem = ({ item, history, showButton }) => {
               <Button
                 customClass="cart_button"
                 label="Remove"
-                testId={`remove-${name.replace(/\s+/g, "-").toLowerCase()}`}
+                testId={`remove-${name.replace(/\s+/g, '-').toLowerCase()}`}
                 onClick={() => removeFromCart(id)}
                 size={BUTTON_SIZES.SMALL}
                 type={BUTTON_TYPES.SECONDARY}
@@ -60,11 +77,11 @@ const CartItem = ({ item, history, showButton }) => {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  return <div className="removed_cart_item" />;
-};
+  return <div className="removed_cart_item" />
+}
 CartItem.propTypes = {
   /**
    * The item
@@ -85,10 +102,10 @@ CartItem.propTypes = {
    * Show the remove button
    */
   showButton: PropTypes.bool,
-};
+}
 CartItem.defaultProps = {
   item: undefined,
   showButton: false,
-};
+}
 
-export default withRouter(CartItem);
+export default withRouter(CartItem)

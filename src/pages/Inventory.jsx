@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
-import { isPerformanceGlitchUser, isProblemUser } from "../utils/Credentials";
-import { InventoryData } from "../utils/InventoryData.js";
-import InventoryListItem from "../components/InventoryListItem";
-import SwagLabsFooter from "../components/Footer";
-import HeaderContainer from "../components/HeaderContainer";
-import { sortAsc, sortDesc, sortHiLo, sortLoHi } from "../utils/Sorting";
-import Select from "../components/Select";
-import "./Inventory.css";
+import React, { useState } from 'react'
+import { withRouter } from 'react-router-dom'
+import { isPerformanceGlitchUser, isProblemUser } from '../utils/Credentials'
+import { InventoryData } from '../utils/InventoryData.js'
+import InventoryListItem from '../components/InventoryListItem'
+import SwagLabsFooter from '../components/Footer'
+import HeaderContainer from '../components/HeaderContainer'
+import { sortAsc, sortDesc, sortHiLo, sortLoHi } from '../utils/Sorting'
+import Select from '../components/Select'
+import './Inventory.css'
 
 const Inventory = () => {
   const [inventoryList, setInventoryList] = useState(
-    sortAsc(InventoryData, "name")
-  );
-  const [activeOption, setActiveOption] = useState("az");
+    sortAsc(InventoryData, 'name'),
+  )
+  const [activeOption, setActiveOption] = useState('az')
   /* istanbul ignore next */
   const startPerformanceGlitch = (duration) => {
-    const start = new Date().getTime();
+    const start = new Date().getTime()
     while (new Date().getTime() < start + duration) {
       // PageLoad increases
     }
-  };
+  }
 
   /* istanbul ignore next */
   if (isPerformanceGlitchUser()) {
-    startPerformanceGlitch(5000);
+    startPerformanceGlitch(5000)
   }
 
   /**
@@ -39,28 +39,28 @@ const Inventory = () => {
     if (isProblemUser()) {
       // Bail out now if we're problem user so that we have a behaviour which is broken in Chrome only for sort.
       // select option onclick is not supported in Chrome but works in IE and FF
-      return;
+      return
     }
 
-    setActiveOption(event.target.value);
+    setActiveOption(event.target.value)
 
     switch (event.target.value) {
-      case "az":
-        setInventoryList(sortAsc(InventoryData, "name"));
-        break;
-      case "za":
-        setInventoryList(sortDesc(InventoryData, "name"));
-        break;
-      case "hilo":
-        setInventoryList(sortHiLo(InventoryData, "price"));
-        break;
-      case "lohi":
-        setInventoryList(sortLoHi(InventoryData, "price"));
-        break;
+      case 'az':
+        setInventoryList(sortAsc(InventoryData, 'name'))
+        break
+      case 'za':
+        setInventoryList(sortDesc(InventoryData, 'name'))
+        break
+      case 'hilo':
+        setInventoryList(sortHiLo(InventoryData, 'price'))
+        break
+      case 'lohi':
+        setInventoryList(sortLoHi(InventoryData, 'price'))
+        break
       default:
-        return;
+        return
     }
-  };
+  }
 
   return (
     <div id="page_wrapper" className="page_wrapper">
@@ -72,10 +72,10 @@ const Inventory = () => {
             <Select
               activeOption={activeOption}
               options={[
-                { key: "az", value: "Name (A to Z)" },
-                { key: "za", value: "Name (Z to A)" },
-                { key: "lohi", value: "Price (low to high)" },
-                { key: "hilo", value: "Price (high to low)" },
+                { key: 'az', value: 'Name (A to Z)' },
+                { key: 'za', value: 'Name (Z to A)' },
+                { key: 'lohi', value: 'Price (low to high)' },
+                { key: 'hilo', value: 'Price (high to low)' },
               ]}
               onChange={sortByOption}
               testId="product_sort_container"
@@ -96,7 +96,7 @@ const Inventory = () => {
                       desc={item.desc}
                       price={item.price}
                     />
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -105,7 +105,7 @@ const Inventory = () => {
       </div>
       <SwagLabsFooter />
     </div>
-  );
-};
+  )
+}
 
-export default withRouter(Inventory);
+export default withRouter(Inventory)

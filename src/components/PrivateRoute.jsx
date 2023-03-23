@@ -1,8 +1,8 @@
-import React from 'react'
-import { Redirect, Route } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { isLoggedIn } from '../utils/Credentials'
-import { ROUTES } from '../utils/Constants'
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
+import PropTypes from "prop-types";
+import { isLoggedIn } from "../utils/Credentials";
+import { ROUTES } from "../utils/Constants";
 
 /**
  * @TODO: This can't be tested yet because enzyme currently doesn't support ReactJS17,
@@ -25,15 +25,15 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         )
       }
     />
-  )
-}
+  );
+};
 /* istanbul ignore next */
 PrivateRoute.propTypes = {
   /**
    * A react component
    */
   component: PropTypes.element,
-}
+};
 /* istanbul ignore next */
 PrivateRoute.defaultProps = {
   customClass: undefined,
@@ -41,6 +41,6 @@ PrivateRoute.defaultProps = {
   secondaryLeftComponent: undefined,
   secondaryRightComponent: undefined,
   secondaryTitle: undefined,
-}
+};
 
-export default PrivateRoute
+export default PrivateRoute;
