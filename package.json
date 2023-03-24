@@ -22,6 +22,7 @@
     "@babel/plugin-proposal-private-methods": "^7.13.0",
     "@babel/preset-env": "^7.13.12",
     "@babel/register": "^7.13.14",
+    "@cypress/instrument-cra": "^1.4.0",
     "chai-sorted": "^0.2.0",
     "cypress": "^12.8.1",
     "cypress-data-session": "^2.3.1",
@@ -33,8 +34,8 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start-18": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts -r @cypress/instrument-cra start",
+    "start-18": "react-scripts -r @cypress/instrument-cra --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "echo Write more tests!",
     "lint": "tsc --noEmit --pretty"
