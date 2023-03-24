@@ -40,6 +40,8 @@ module.exports = defineConfig({
       registerDataSession(on, config)
       // https://github.com/bahmutov/cypress-watch-and-reload
       require('cypress-watch-and-reload/plugins')(on, config)
+      // https://github.com/bahmutov/cypress-code-coverage
+      require('@bahmutov/cypress-code-coverage/plugin')(on, config)
       return config
     },
   },
