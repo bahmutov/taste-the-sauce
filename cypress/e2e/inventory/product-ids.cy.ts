@@ -1,4 +1,8 @@
 import { LoginPage } from '@support/pages/login.page'
+// import the R library from the "ramda" dependency
+// https://ramdajs.com/#usage
+// Tip: install Ramda types separately
+// https://ramdajs.com/#typings
 
 describe('Products', () => {
   // create a small type on the fly using jsdoc comment
@@ -63,5 +67,21 @@ describe('Products', () => {
         const unique = Cypress._.uniq(ids)
         expect(unique).to.deep.equal(ids)
       })
+  })
+
+  it('have unique ids (Ramda)', () => {
+    // get all inventory items, there should be more than 3
+    // https://on.cypress.io/get
+    // https://on.cypress.io/should
+    //
+    // convert elements from jQuery to an array
+    // https://on.cypress.io/invoke
+    //
+    // then map each element into its attribute
+    // by invoking the method "getAttribute" with one argument "data-itemid"
+    // https://ramdajs.com/docs/
+    // look for invoking methods and mappings
+    //
+    // confirm the list of ids has all unique elements
   })
 })
