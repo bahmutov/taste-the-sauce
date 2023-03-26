@@ -1,0 +1,18 @@
+name: nightly
+on:
+  # run this workflow every night at 3am
+  schedule:
+    - cron: '0 3 * * *'
+  # or when the user triggers it from GitHub Actions page
+jobs:
+  nightly:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Print Node version
+        run: node -v
+      # use the Cypress GH action to run all Cypress tests
+      # https://github.com/cypress-io/github-action
+      # Tip: start the application server
+      # and wait for it to respond before testing
