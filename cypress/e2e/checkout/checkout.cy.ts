@@ -3,7 +3,7 @@ import { LoginInfo } from '..'
 import { CheckoutPage } from '@support/pages/checkout.page'
 import { InventoryData } from '@fixtures/inventory-data'
 
-describe('Checkout', () => {
+describe('Checkout', { viewportHeight: 1200 }, () => {
   const user: LoginInfo = Cypress.env('users').standard
   // we can even check if the user object is valid
   if (!user) {
@@ -16,7 +16,39 @@ describe('Checkout', () => {
     LoginPage.login(user.username, user.password)
   })
 
-  it('goes through the check out pages', { viewportHeight: 1200 }, () => {
+  it('cancels checkout', () => {
+    const ids = Cypress._.map(InventoryData, 'id').map((id) => ({ id, n: 1 }))
+    window.localStorage.setItem('cart-contents', JSON.stringify(ids))
+    cy.visit('/checkout-step-one.html')
+    cy.contains('button', 'Cancel').click()
+    cy.log('**back at the cart page**')
+    cy.location('pathname').should('equal', '/cart.html')
+  })
+
+  it('requires all inputs', () => {
+    const ids = Cypress._.map(InventoryData, 'id').map((id) => ({ id, n: 1 }))
+    window.localStorage.setItem('cart-contents', JSON.stringify(ids))
+    cy.visit('/checkout-step-one.html')
+    cy.get('input[type=submit]').click()
+    cy.contains('[data-test=error]', 'Error: First Name is required').should(
+      'be.visible',
+    )
+    cy.get('[data-test="firstName"]').type('Joe')
+    cy.get('input[type=submit]').click()
+    cy.contains('[data-test=error]', 'Error: Last Name is required').should(
+      'be.visible',
+    )
+    cy.get('[data-test="lastName"]').type('Last')
+    cy.get('input[type=submit]').click()
+    cy.contains('[data-test=error]', 'Error: Postal Code is required').should(
+      'be.visible',
+    )
+    cy.get('[data-test="postalCode"]').type('90210')
+    cy.get('input[type=submit]').click()
+    cy.location('pathname').should('equal', '/checkout-step-two.html')
+  })
+
+  it('goes through the check out pages', () => {
     // grab the "id" property from each item in the InventoryData array
     // Tip: I told you Lodash is a super neat library
     const ids = Cypress._.map(InventoryData, 'id').map((id) => ({ id, n: 1 }))
@@ -55,5 +87,9 @@ describe('Checkout', () => {
       .its('localStorage')
       .invoke('getItem', 'cart-contents')
       .should('not.exist')
+
+    cy.log('**Back Home goes to the inventory page**')
+    cy.contains('button', 'Back Home').click()
+    cy.location('pathname').should('equal', '/inventory.html')
   })
 })

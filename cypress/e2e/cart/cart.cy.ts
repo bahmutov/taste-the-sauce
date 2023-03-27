@@ -81,6 +81,10 @@ describe('Cart', () => {
         // @ts-ignore
         .then(JSON.parse)
         .should('deep.equal', ids)
+
+      cy.log('**continue shopping**')
+      cy.contains('button', 'Continue Shopping').click()
+      cy.location('pathname').should('equal', '/inventory.html')
     },
   )
 })
