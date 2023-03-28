@@ -53,6 +53,13 @@ module.exports = defineConfig({
     devServer: {
       framework: 'create-react-app',
       bundler: 'webpack',
+      webpackConfig: {
+        resolve: {
+          alias: {
+            '@cypress': path.resolve(__dirname, 'cypress'),
+          },
+        },
+      },
     },
   },
 })

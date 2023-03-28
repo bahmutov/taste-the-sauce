@@ -1,9 +1,7 @@
 import InventoryItem from './InventoryItem'
 import { InventoryData } from '../utils/InventoryData'
-// unfortunately, our component specs are bundled using app's bundler
-// that does not "understand" our tsconfig path aliases
-// thus need to use relative paths
-import { InventoryPage } from '../../cypress/support/pages/inventory.page'
+// the "@cypress" Webpack alias is defined in the "cypress.config.js"
+import { InventoryPage } from '@cypress/support/pages/inventory.page'
 
 describe('InventoryItem', { viewportHeight: 1000 }, () => {
   it('shows an item', () => {
