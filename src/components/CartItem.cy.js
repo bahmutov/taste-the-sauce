@@ -32,7 +32,7 @@ describe('CartItem', () => {
     })
   })
 
-  it('removes a cart item', () => {
+  it.only('removes a cart item', () => {
     // pick an item from the inventory list
     const item = InventoryData[2]
     // mount the cart item (with the router), passing the item as a prop

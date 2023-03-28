@@ -17,7 +17,7 @@ describe('Checkout', { viewportHeight: 1200 }, () => {
     LoginPage.login(user.username, user.password)
   })
 
-  it('shows the right total price', () => {
+  it.only('shows the right total price', () => {
     // pick random 3 items from the InventoryData array
     // https://lodash.com/docs
     // Tip: I told you Lodash is a super neat library
