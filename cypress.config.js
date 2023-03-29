@@ -2,6 +2,7 @@ const { defineConfig } = require('cypress')
 const registerDataSession = require('cypress-data-session/src/plugin')
 // https://github.com/bahmutov/cypress-split
 const cypressSplit = require('cypress-split')
+const path = require('path')
 
 module.exports = defineConfig({
   e2e: {
@@ -58,6 +59,27 @@ module.exports = defineConfig({
           alias: {
             '@cypress': path.resolve(__dirname, 'cypress'),
           },
+        },
+        mode: 'development',
+        devtool: false,
+        module: {
+          rules: [
+            // application and Cypress files are bundled like React components
+            // and instrumented using the babel-plugin-istanbul
+            {
+              test: /\.jsx?$/,
+              // do not instrument node_modules
+              // or Cypress component specs
+              exclude: /node_modules|\.cy\.js/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env', '@babel/preset-react'],
+                  plugins: ['istanbul'],
+                },
+              },
+            },
+          ],
         },
       },
     },
