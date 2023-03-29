@@ -40,7 +40,7 @@ export class ShoppingCart {
     const curContents = ShoppingCart.getCartContents()
     // find the item id property "id" equal to the value id
     const item = curContents.find((x) => x.id === id)
-    console.log({ id, n, curContents, item })
+    // console.log({ id, n, curContents, item })
     // do nothing if there is no such item
     if (!item) {
       return
@@ -91,6 +91,7 @@ export class ShoppingCart {
 
 ShoppingCart.LISTENERS = []
 
+/* istanbul ignore else */
 if (window.Cypress) {
   // allow Cypress tests to call ShoppingCart methods
   // and access its data

@@ -19,6 +19,13 @@ describe('ShoppingCart', () => {
       { id: 1, n: 1 },
       { id: 4, n: 1 },
     ])
+    // adding a duplicate item
+    ShoppingCart.addItem(1)
+    // the contents stay the same
+    expect(ShoppingCart.getCartContents()).to.deep.equal([
+      { id: 1, n: 1 },
+      { id: 4, n: 1 },
+    ])
   })
 
   it('overwrites the shopping cart', () => {
@@ -52,6 +59,18 @@ describe('ShoppingCart', () => {
     ShoppingCart.removeItem(2)
     // the cart should have list [5]
     expect(ShoppingCart.getCartContents()).to.deep.equal([{ id: 5, n: 1 }])
+    // removing non-existent item does not change anything
+    ShoppingCart.removeItem(10001)
+    expect(ShoppingCart.getCartContents()).to.deep.equal([{ id: 5, n: 1 }])
+  })
+
+  it('sets quantity', () => {
+    ShoppingCart.addItem(101)
+    ShoppingCart.setQuantity(101, 10)
+    expect(ShoppingCart.getCartContents()).to.deep.equal([{ id: 101, n: 10 }])
+    // set quantity for non-existent item
+    ShoppingCart.setQuantity(4, 10)
+    expect(ShoppingCart.getCartContents()).to.deep.equal([{ id: 101, n: 10 }])
   })
 
   it('saves the cart in the local storage', () => {
@@ -76,5 +95,19 @@ describe('ShoppingCart', () => {
     ShoppingCart.addItem(10)
     ShoppingCart.addItem(20)
     cy.get('@forceUpdate').should('have.been.calledTwice')
+  })
+
+  it('resets the cart', () => {
+    const items = [2, 5]
+    ShoppingCart.setCartContents(items)
+    expect(localStorage.getItem('cart-contents'), 'cart contents').to.be.a(
+      'string',
+    )
+    ShoppingCart.registerCartListener({
+      forceUpdate: cy.stub().as('forceUpdate'),
+    })
+    ShoppingCart.resetCart()
+    expect(localStorage.getItem('cart-contents'), 'cart contents').to.be.null
+    cy.get('@forceUpdate').should('have.been.calledOnce')
   })
 })
