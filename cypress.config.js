@@ -2,6 +2,7 @@ const { defineConfig } = require('cypress')
 const registerDataSession = require('cypress-data-session/src/plugin')
 // https://github.com/bahmutov/cypress-split
 const cypressSplit = require('cypress-split')
+const path = require('path')
 
 module.exports = defineConfig({
   e2e: {
