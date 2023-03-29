@@ -42,6 +42,7 @@
     "build": "react-scripts build",
     "test": "echo Write more tests!",
     "lint": "tsc --noEmit --pretty",
+    "clean": "rm -rf .nyc_output coverage",
     "only": "stop-only --folder cypress/e2e --folder src",
     "only:warn": "stop-only --warn --folder cypress/e2e --folder src",
     "names": "find-cypress-specs --names",
