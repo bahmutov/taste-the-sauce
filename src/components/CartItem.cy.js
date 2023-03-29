@@ -1,3 +1,4 @@
+import React from 'react'
 import CartItem from './CartItem'
 import { InventoryData } from '../utils/InventoryData'
 // want to make the item look just like the inventory list

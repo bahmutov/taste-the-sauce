@@ -21,7 +21,6 @@ export const InventoryItem = (props) => {
   let inventoryId = -1
   let item
 
-  /* istanbul ignore else */
   if (queryParams.has('id')) {
     inventoryId = parseInt(queryParams.get('id'))
     // console.log({ inventoryId })
@@ -47,25 +46,11 @@ export const InventoryItem = (props) => {
   const [itemInCart, setItemInCart] = useState(
     ShoppingCart.isItemInCart(inventoryId),
   )
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
+
   const goBack = () => {
     history.push(ROUTES.INVENTORY)
   }
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
+
   const addToCart = (itemId) => {
     if (isProblemUser()) {
       // Bail out now, don't add to cart if the item ID is odd
@@ -77,14 +62,7 @@ export const InventoryItem = (props) => {
     ShoppingCart.addItem(itemId)
     setItemInCart(true)
   }
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
+
   const removeFromCart = (itemId) => {
     if (isProblemUser()) {
       // Bail out now, don't remove from cart if the item ID is even
@@ -96,14 +74,7 @@ export const InventoryItem = (props) => {
     ShoppingCart.removeItem(itemId)
     setItemInCart(false)
   }
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
+
   const ButtonType = ({ id, item, itemInCart }) => {
     const label = itemInCart ? 'Remove' : 'Add to cart'
     const onClick = itemInCart ? () => removeFromCart(id) : () => addToCart(id)

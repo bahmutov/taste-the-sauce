@@ -26,7 +26,6 @@ const Button = ({
   const buttonTypeClass = ` btn_${type}`
   const extraClass = customClass ? ` ${customClass}` : ''
   const buttonSize = ` btn_${size}`
-  /* istanbul ignore next */
   const BackImage = () => (
     <img src={backPng} className="back-image" alt="Go back" />
   )

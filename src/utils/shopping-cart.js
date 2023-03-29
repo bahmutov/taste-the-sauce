@@ -3,7 +3,6 @@ export class ShoppingCart {
     // pull out our current cart contents
     const curContents = ShoppingCart.getCartContents()
 
-    /* istanbul ignore else */
     const item = curContents.find((x) => x.id === itemId)
     if (!item) {
       // Item's not yet present - add it now
@@ -71,7 +70,6 @@ export class ShoppingCart {
     window.localStorage.setItem('cart-contents', JSON.stringify(newContents))
 
     // Notify our listeners
-    /* istanbul ignore next */
     ShoppingCart.LISTENERS.forEach((curListener) => {
       curListener.forceUpdate()
     })
@@ -81,7 +79,6 @@ export class ShoppingCart {
     window.localStorage.removeItem('cart-contents')
 
     // Notify our listeners
-    /* istanbul ignore next */
     ShoppingCart.LISTENERS.forEach((curListener) => {
       curListener.forceUpdate()
     })

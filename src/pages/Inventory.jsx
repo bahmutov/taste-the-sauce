@@ -14,7 +14,7 @@ const Inventory = () => {
     sortAsc(InventoryData, 'name'),
   )
   const [activeOption, setActiveOption] = useState('az')
-  /* istanbul ignore next */
+
   const startPerformanceGlitch = (duration) => {
     const start = new Date().getTime()
     while (new Date().getTime() < start + duration) {
@@ -22,19 +22,10 @@ const Inventory = () => {
     }
   }
 
-  /* istanbul ignore next */
   if (isPerformanceGlitchUser()) {
     startPerformanceGlitch(5000)
   }
 
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
   const sortByOption = (event) => {
     if (isProblemUser()) {
       // Bail out now if we're problem user so that we have a behaviour which is broken in Chrome only for sort.

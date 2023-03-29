@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./HeaderContainer.css";
-import DrawerMenu from "./DrawerMenu";
-import CartButton from "./CartButton";
+import React from 'react'
+import PropTypes from 'prop-types'
+import './HeaderContainer.css'
+import DrawerMenu from './DrawerMenu'
+import CartButton from './CartButton'
 
 const HeaderContainer = ({
   customClass,
@@ -11,47 +11,18 @@ const HeaderContainer = ({
   secondaryRightComponent,
   secondaryTitle,
 }) => {
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
-  const HeaderBot = () => <div className="peek" />;
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
+  const HeaderBot = () => <div className="peek" />
+
   const LeftComponent = ({ leftComponent }) => (
     <div className="left_component">{React.cloneElement(leftComponent)}</div>
-  );
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
+  )
+
   const RightComponent = ({ rightComponent }) => (
     <div className="right_component">{React.cloneElement(rightComponent)}</div>
-  );
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
-  const Title = ({ title }) => <span className="title">{title}</span>;
-  const extraClass = customClass ? ` ${customClass}` : "";
+  )
+
+  const Title = ({ title }) => <span className="title">{title}</span>
+  const extraClass = customClass ? ` ${customClass}` : ''
 
   return (
     <div id="header_container" className={`header_container${extraClass}`}>
@@ -77,8 +48,8 @@ const HeaderContainer = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 HeaderContainer.propTypes = {
   /**
    * A custom class for the header container
@@ -100,13 +71,13 @@ HeaderContainer.propTypes = {
    * A title
    */
   title: PropTypes.string,
-};
+}
 HeaderContainer.defaultProps = {
   customClass: undefined,
   secondaryHeaderBot: undefined,
   secondaryLeftComponent: undefined,
   secondaryRightComponent: undefined,
   secondaryTitle: undefined,
-};
+}
 
-export default HeaderContainer;
+export default HeaderContainer

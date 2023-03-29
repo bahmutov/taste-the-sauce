@@ -10,14 +10,7 @@ import Button, { BUTTON_SIZES, BUTTON_TYPES } from './Button'
 const InventoryListItem = (props) => {
   const { desc, id, image_url, history, name, price } = props
   const [itemInCart, setItemInCart] = useState(ShoppingCart.isItemInCart(id))
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
+
   const addToCart = (itemId) => {
     if (isProblemUser()) {
       // Bail out now, don't add to cart if the item ID is odd
@@ -29,14 +22,7 @@ const InventoryListItem = (props) => {
     ShoppingCart.addItem(itemId)
     setItemInCart(true)
   }
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
+
   const removeFromCart = (itemId) => {
     if (isProblemUser()) {
       // Bail out now, don't remove from cart if the item ID is even
@@ -54,14 +40,6 @@ const InventoryListItem = (props) => {
   }
   const itemLink = `${ROUTES.INVENTORY_LIST}?id=${linkId}`
 
-  /**
-   * @TODO:
-   * This can't be tested yet because enzyme currently doesn't support ReactJS17,
-   * see https://github.com/enzymejs/enzyme/issues/2429.
-   * This means we can't fully mount the component and test all rendered components
-   * and functions
-   */
-  /* istanbul ignore next */
   const ButtonType = ({ id, item, itemInCart }) => {
     const label = itemInCart ? 'Remove' : 'Add to cart'
     const onClick = itemInCart ? () => removeFromCart(id) : () => addToCart(id)

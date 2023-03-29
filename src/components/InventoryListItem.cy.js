@@ -1,3 +1,4 @@
+import React from 'react'
 import InventoryListItem from './InventoryListItem'
 import { InventoryData } from '../utils/InventoryData'
 import { ShoppingCart } from '../utils/shopping-cart'
