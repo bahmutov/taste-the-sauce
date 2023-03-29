@@ -1,9 +1,14 @@
+import React from 'react'
 import InventoryItem from './InventoryItem'
 import { InventoryData } from '../utils/InventoryData'
 // the "@cypress" Webpack alias is defined in the "cypress.config.js"
 import { InventoryPage } from '@cypress/support/pages/inventory.page'
 
 describe('InventoryItem', { viewportHeight: 1000 }, () => {
+  beforeEach(() => {
+    localStorage.debug = 'code-coverage'
+  })
+
   it('shows an item', () => {
     // what do you see when you try to mount the component?
     // cy.mount(<InventoryItem />)
@@ -104,5 +109,15 @@ describe('InventoryItem', { viewportHeight: 1000 }, () => {
       .invoke('getItem', 'cart-contents')
       .apply(JSON.parse)
       .should('deep.equal', [])
+  })
+
+  it('shows non-existent item', () => {
+    cy.mountWithRouter(<InventoryItem search="id=10001" />)
+    cy.contains('.inventory_details_name', 'ITEM NOT FOUND')
+    cy.get('.inventory_details_img').should(
+      'have.attr',
+      'alt',
+      'ITEM NOT FOUND',
+    )
   })
 })

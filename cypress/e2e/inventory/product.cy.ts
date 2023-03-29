@@ -68,4 +68,14 @@ describe('Product', () => {
     // confirm we are back at the inventory page
     cy.location('pathname').should('equal', '/inventory.html')
   })
+
+  it('shows item not found', () => {
+    cy.visit('/inventory-item.html?id=10001')
+    cy.contains('.inventory_details_name', 'ITEM NOT FOUND')
+    cy.get('.inventory_details_img').should(
+      'have.attr',
+      'alt',
+      'ITEM NOT FOUND',
+    )
+  })
 })
