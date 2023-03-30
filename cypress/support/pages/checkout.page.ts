@@ -1,4 +1,10 @@
 export const CheckoutPage = {
+  selectors: {
+    firstName: '#first-name',
+    lastName: '#last-name',
+    postalCode: '#postal-code',
+  },
+
   /**
    * Fills the checkout form with provided or default values.
    * @param firstName First name, default "Joe"
@@ -21,9 +27,9 @@ export const CheckoutPage = {
     // make sure to return the command chain
     // to allow chaining more assertions and commands
     return cy.get('.checkout_info_wrapper form').fillForm({
-      '#first-name': firstName,
-      '#last-name': lastName,
-      '#postal-code': zipCode,
+      [CheckoutPage.selectors.firstName]: firstName,
+      [CheckoutPage.selectors.lastName]: lastName,
+      [CheckoutPage.selectors.postalCode]: zipCode,
     })
   },
-}
+} as const
