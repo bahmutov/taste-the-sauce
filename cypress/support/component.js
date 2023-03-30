@@ -1,11 +1,14 @@
 // https://github.com/bahmutov/cypress-map
 import 'cypress-map'
-
-import './commands'
-
+import { Route, BrowserRouter } from 'react-router-dom'
 import { mount } from 'cypress/react'
 
 Cypress.Commands.add('mount', mount)
 
-// Example use:
-// cy.mount(<MyComponent />)
+Cypress.Commands.add('mountWithRouter', (Component) => {
+  return mount(
+    <BrowserRouter initialEntries={[]}>
+      <Route>{Component}</Route>
+    </BrowserRouter>,
+  )
+})
