@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./Select.css";
+import React from 'react'
+import PropTypes from 'prop-types'
+import './Select.css'
 
 const Select = ({ activeOption, onChange, options, testId }) => {
   return (
@@ -8,7 +8,7 @@ const Select = ({ activeOption, onChange, options, testId }) => {
       <span className="active_option">
         {
           options[options.findIndex((option) => option.key === activeOption)]
-            .value
+            ?.value
         }
       </span>
       <select
@@ -17,7 +17,7 @@ const Select = ({ activeOption, onChange, options, testId }) => {
         value={activeOption}
         {...(testId
           ? {
-              "data-test": testId,
+              'data-test': testId,
             }
           : {})}
       >
@@ -28,8 +28,8 @@ const Select = ({ activeOption, onChange, options, testId }) => {
         ))}
       </select>
     </span>
-  );
-};
+  )
+}
 Select.propTypes = {
   /**
    * The active option key
@@ -46,15 +46,15 @@ Select.propTypes = {
     PropTypes.shape({
       key: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   /**
    * The test id
    */
   testId: PropTypes.string,
-};
+}
 Select.defaultProps = {
   testId: undefined,
-};
+}
 
-export default Select;
+export default Select

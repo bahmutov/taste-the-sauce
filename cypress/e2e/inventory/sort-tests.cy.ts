@@ -68,4 +68,16 @@ describe('sorting tests', () => {
     sortBy('za')
     getNames().should('be.descending')
   })
+
+  it('does nothing for invalid sort options', () => {
+    // the current sort option
+    cy.contains('.active_option', 'Name (A to Z)')
+    cy.getByTest('product_sort_container').invoke(
+      'append',
+      '<option value="nope">Nope</option>',
+    )
+    cy.getByTest('product_sort_container').select('nope')
+    // the active sort option is blank
+    cy.get('.active_option').should('have.text', '')
+  })
 })
