@@ -1,4 +1,8 @@
 export class ShoppingCart {
+  /**
+   * Adds an item by id
+   * @param {number} itemId
+   */
   static addItem(itemId) {
     // pull out our current cart contents
     const curContents = ShoppingCart.getCartContents()

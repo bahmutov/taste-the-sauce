@@ -1,14 +1,12 @@
 import React from 'react'
 import InventoryItem from './InventoryItem'
 import { InventoryData } from '../utils/InventoryData'
+import { setCredentials, isProblemUser } from '../utils/Credentials'
+import { ShoppingCart } from '../utils/shopping-cart'
 // the "@cypress" Webpack alias is defined in the "cypress.config.js"
 import { InventoryPage } from '@cypress/support/pages/inventory.page'
 
 describe('InventoryItem', { viewportHeight: 1000 }, () => {
-  beforeEach(() => {
-    localStorage.debug = 'code-coverage'
-  })
-
   it('shows an item', () => {
     // what do you see when you try to mount the component?
     // cy.mount(<InventoryItem />)
@@ -119,5 +117,66 @@ describe('InventoryItem', { viewportHeight: 1000 }, () => {
       'alt',
       'ITEM NOT FOUND',
     )
+  })
+
+  it('handles missing id in the search params', () => {
+    // mount the InventoryItem without search prop
+    // and confirm it shows "Item not found"
+  })
+
+  context('Problem user', () => {
+    beforeEach(() => {
+      // set the user credentials
+      // (hard-code the username and the password for now)
+      // and confirm the current user is the problem one
+      // Tip: call the application's code
+      // setCredentials and isProblemUser
+    })
+
+    it('adds even items to the cart', () => {
+      // mount an item with id 2 (even)
+      //
+      // find the button with text "Add to cart"
+      // and click on it
+      //
+      // confirm the cart badge shows one item
+    })
+
+    it('does not add odd items to the cart', () => {
+      // mount the InventoryItem with an odd id
+      //
+      // find the button with text "Add to cart"
+      // and click on it
+      //
+      // confirm the cart badge does not appear
+    })
+
+    it('removes odd item from the cart', () => {
+      // add items with id 1 and 2 to the shopping cart
+      //
+      // mount the inventory item with id 1 (odd)
+      //
+      // confirm the cart badge shows two items
+      //
+      // find the button with text "Remove"
+      // and click on it
+      //
+      // confirm the cart badge shows one item
+      //
+      // confirm the correct items remain in the shopping cart
+    })
+
+    it('remove even items from the cart', () => {
+      // add items with id 1 and 2 to the shopping cart
+      //
+      // mount the inventory item with id 2 (even)
+      //
+      // confirm the cart badge shows two items
+      //
+      // find the button with text "Remove"
+      // and click on it
+      //
+      // confirm the cart badge still shows two items in the cart
+    })
   })
 })
