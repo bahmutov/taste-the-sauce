@@ -22,16 +22,26 @@ describe('Problem user', { viewportHeight: 1200 }, () => {
     // enter "Joe Smith 90210"
     // Tip: get the selectors from the CheckoutPage object
     // and type the text yourself to bypass our checks
-    //
+    cy.get(CheckoutPage.selectors.firstName).type('Joe')
+    cy.get(CheckoutPage.selectors.lastName).type('Smith')
+    cy.get(CheckoutPage.selectors.postalCode).type('90210')
     // and confirm the application form
     // shows the following:
     // first name: "h"
     // last name: ""
     // zip code: "90210"
     // https://glebbahmutov.com/cypress-examples/commands/assertions.html
-    //
+    cy.get(CheckoutPage.selectors.firstName).should('have.value', 'h')
+    cy.get(CheckoutPage.selectors.lastName).should('have.value', '')
+    cy.get(CheckoutPage.selectors.postalCode).should('have.value', '90210')
     // click on the Continue button
+    cy.get('#continue').click()
     // the form shows an error message "Last Name is required"
-    // find the close button and click it to get rid of the error
+    cy.contains('.error', 'Last Name is required')
+      .should('be.visible')
+      // find the close button and click it to get rid of the error
+      .find('button.error-button')
+      .click()
+    cy.get('.error').should('not.exist')
   })
 })
