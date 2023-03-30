@@ -31,5 +31,9 @@ describe('InventoryListItem', () => {
       .invoke('getCartContents')
       .should('deep.equal', [{ id: 3, n: 1 }])
     cy.wrap(ShoppingCart).invoke('isItemInCart', 3).should('be.true')
+
+    cy.log('**remove the item**')
+    cy.get('.inventory_item').contains('button', 'Remove').click()
+    cy.wrap(ShoppingCart).invoke('getCartContents').should('be.empty')
   })
 })

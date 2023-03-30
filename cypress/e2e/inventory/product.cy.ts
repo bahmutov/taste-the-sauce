@@ -78,4 +78,16 @@ describe('Product', () => {
       'ITEM NOT FOUND',
     )
   })
+
+  it('navigates by clicking the thumbnail image', () => {
+    const name = 'Sauce Labs Fleece Jacket'
+    cy.contains('.inventory_item', name)
+      .find('.inventory_item_img a:has(img)')
+      .click()
+    cy.location('pathname').should('equal', '/inventory-item.html')
+    cy.location('search').should('match', /id=\d+/)
+    cy.contains('button', 'Back to products').click()
+    // confirm we are back at the inventory page
+    cy.location('pathname').should('equal', '/inventory.html')
+  })
 })
