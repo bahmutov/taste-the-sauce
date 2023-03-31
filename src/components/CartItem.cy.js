@@ -61,4 +61,23 @@ describe('CartItem', () => {
     // confirm the input field has the new value 5
     cy.get('.cart_item .cart_quantity').should('have.value', 5)
   })
+
+  it('hides if there is no item', () => {
+    // mount the Cart without an item
+    // confirm the removed cart element exists on the page
+    // Tip: you will need to fix the cart item source code
+  })
+
+  it('sets 0 if quantity is not a number', () => {
+    // pick an item from the inventory list
+    const item = InventoryData[2]
+    // mount the cart item (with the router), passing the item as a prop
+    cy.mountWithRouter(<CartItem item={item} />)
+    // confirm the item is on the page
+    // and the quantity is 1 initially
+    // and try to delete the text to cause invalid number
+    // Tip: https://on.cypress.io/type
+    //
+    // confirm the input field changes the value to 0
+  })
 })
