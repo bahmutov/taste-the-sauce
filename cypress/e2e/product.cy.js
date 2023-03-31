@@ -66,10 +66,10 @@ describe('Product', () => {
         cy.contains('.inventory_details_name.large_size', name)
         cy.contains('.inventory_details_price', price)
       })
+    // go back to the inventory page by clicking
+    // "Back to products" button
+    cy.get('[data-test="back-to-products"]').click()
+    // confirm we are back at the inventory page
+    cy.location('pathname').should('equal', '/inventory.html')
   })
-  // go back to the inventory page by clicking
-  // "Back to products" button
-  cy.get('[data-test="back-to-products"]').click()
-  // confirm we are back at the inventory page
-  cy.location('pathname').should('equal', '/inventory.html')
 })
