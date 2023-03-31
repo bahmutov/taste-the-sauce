@@ -2,6 +2,7 @@ import { LoginPage } from '@support/pages/login.page'
 import { InventoryPage } from '@support/pages/inventory.page'
 import { LoginInfo } from '..'
 import { InventoryData } from '@fixtures/inventory-data'
+import { ShoppingCart } from '../../../src/utils/shopping-cart'
 
 describe('Cart', () => {
   const user: LoginInfo = Cypress.env('users').standard
@@ -87,4 +88,18 @@ describe('Cart', () => {
       cy.location('pathname').should('equal', '/inventory.html')
     },
   )
+
+  it('navigates to the item from the cart', () => {
+    const itemId = 3
+    const item = InventoryData[itemId]
+    ShoppingCart.setCartContents([{ id: itemId, n: 1 }])
+    // visit the cart page
+    //
+    // find the anchor link for the item and click it
+    // https://on.cypress.io/contains
+    // https://on.cypress.io/click
+    //
+    // confirm you are on the inventory item page
+    // and the search parameters include id=itemId
+  })
 })
