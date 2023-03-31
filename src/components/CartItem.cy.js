@@ -66,6 +66,8 @@ describe('CartItem', () => {
     // mount the Cart without an item
     // confirm the removed cart element exists on the page
     // Tip: you will need to fix the cart item source code
+    cy.mountWithRouter(<CartItem />)
+    cy.get('.removed_cart_item')
   })
 
   it('sets 0 if quantity is not a number', () => {
@@ -76,8 +78,11 @@ describe('CartItem', () => {
     // confirm the item is on the page
     // and the quantity is 1 initially
     // and try to delete the text to cause invalid number
-    // Tip: https://on.cypress.io/type
-    //
+    cy.get('.cart_item .cart_quantity')
+      .should('have.value', 1)
+      // Tip: https://on.cypress.io/type
+      .type('{selectAll}{del}')
     // confirm the input field changes the value to 0
+    cy.get('.cart_item .cart_quantity').should('have.value', 0)
   })
 })

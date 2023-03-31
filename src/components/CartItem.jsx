@@ -11,17 +11,12 @@ const CartItem = ({ item, history, showButton }) => {
   const [itemVisible, setItemVisible] = useState(true)
   const [quantity, setQuantity] = useState(1)
 
-  if (!item) {
-    // Hide this if the item is invalid
-    setItemVisible(false)
-  }
-
   const removeFromCart = (itemId) => {
     ShoppingCart.removeItem(itemId)
     setItemVisible(false)
   }
 
-  if (itemVisible) {
+  if (item && itemVisible) {
     const { id, name, desc, price } = item
     let linkId = id
 
@@ -42,6 +37,7 @@ const CartItem = ({ item, history, showButton }) => {
           className="cart_quantity"
           value={shoppingCartItem.n}
           onChange={(evt) => {
+            console.log(evt.target.valueAsNumber)
             const n = Number.isNaN(evt.target.valueAsNumber)
               ? 0
               : evt.target.valueAsNumber

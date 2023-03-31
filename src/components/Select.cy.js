@@ -49,11 +49,14 @@ it('skips the data-test attribute', () => {
   ]
   const activeOption = 'a to z'
   // mount the select component with these props
-  //
+  cy.mount(<Select options={options} activeOption={activeOption} />)
   // confirm the select HTML element does not have attribute "data-test"
   // https://glebbahmutov.com/cypress-examples/commands/assertions.html
-  //
+  cy.get('select').should('not.have.attr', 'data-test')
   // positive test: mount the component but add testId prop
-  //
+  cy.mount(
+    <Select options={options} activeOption={activeOption} testId="my-select" />,
+  )
   // confirm the select element has "data-test" attribute with expected value
+  cy.get('select').should('have.attr', 'data-test', 'my-select')
 })
