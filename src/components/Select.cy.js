@@ -35,3 +35,25 @@ it('shows the select component', () => {
   // with the "z to a" argument
   cy.get('@selectOption').should('have.been.calledWith', 'z to a')
 })
+
+it('skips the data-test attribute', () => {
+  const options = [
+    {
+      key: 'a to z',
+      value: 'A to Z',
+    },
+    {
+      key: 'z to a',
+      value: 'Z to A',
+    },
+  ]
+  const activeOption = 'a to z'
+  // mount the select component with these props
+  //
+  // confirm the select HTML element does not have attribute "data-test"
+  // https://glebbahmutov.com/cypress-examples/commands/assertions.html
+  //
+  // positive test: mount the component but add testId prop
+  //
+  // confirm the select element has "data-test" attribute with expected value
+})
