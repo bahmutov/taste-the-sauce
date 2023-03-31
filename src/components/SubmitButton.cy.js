@@ -20,3 +20,13 @@ it('shows the submit button', () => {
     .and('have.attr', 'id', 'submit-it')
     .and('have.attr', 'name', 'submit-it')
 })
+
+it('does not need a custom class', () => {
+  cy.mount(<SubmitButton value="Continue" testId="submit-it" />)
+  // confirm the input element _only_ has class attribute "submit-button"
+})
+
+it('does not set test id by default', () => {
+  cy.mount(<SubmitButton value="Continue" />)
+  // confirm the input element does not have "data-test" attribute
+})
