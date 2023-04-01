@@ -22,21 +22,31 @@ describe('Product', () => {
     // https://on.cypress.io/intercept
     // give the intercept an alias "image"
     // https://on.cypress.io/as
-    //
+    cy.intercept(
+      { resourceType: 'image', pathname: /\/bolt-shirt/ },
+      { statusCode: 404 },
+    ).as('image')
     // visit the inventory item with id 1
     cy.visit('/inventory-item.html?id=1')
     // confirm the thumbnail image was loaded by the page
     // by waiting for the network alias "image"
     // https://on.cypress.io/image
-    //
+    cy.wait('@image')
     // confirm the image element has not loaded
     // - get the image element
     // - get its property "naturalWidth"
     // - check if it is zero
     // For an example, read "Check More Things Before Clicking"
     // https://glebbahmutov.com/blog/check-more-things/
-    //
+    cy.get('img.inventory_details_img')
+      .should('be.visible')
+      .its('0.naturalWidth')
+      .should('equal', 0)
     // Tip: you can get a element's property
     // using cy.prop from cypress-map plugin
+    cy.get('img.inventory_details_img')
+      .should('be.visible')
+      .prop('naturalHeight')
+      .should('equal', 0)
   })
 })

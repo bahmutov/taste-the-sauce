@@ -14,6 +14,7 @@ describe('Product', () => {
   // or restore the previous user session
   beforeEach(() => {
     LoginPage.login(user.username, user.password)
+
     cy.visit('/inventory.html')
     cy.location('pathname').should('equal', '/inventory.html')
   })

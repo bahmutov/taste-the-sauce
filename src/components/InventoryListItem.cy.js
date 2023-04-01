@@ -36,4 +36,10 @@ describe('InventoryListItem', () => {
     cy.get('.inventory_item').contains('button', 'Remove').click()
     cy.wrap(ShoppingCart).invoke('getCartContents').should('be.empty')
   })
+
+  it.skip('shows a broken image link', () => {
+    const item = structuredClone(InventoryData[3])
+    cy.intercept({ resourceType: 'image' }).as('image')
+    cy.mountWithRouter(<InventoryListItem {...item} />)
+  })
 })

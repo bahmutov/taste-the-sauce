@@ -42,7 +42,7 @@ describe('ShoppingCart', () => {
       { id: 2, n: 1 },
       { id: 5, n: 1 },
     ])
-    // confirm the shopping cart has item with id 2 and 4
+    // confirm the shopping cart has item with id 2 and 5
     // but does not have an item with id 1
     expect(ShoppingCart.isItemInCart(2), 'item with id 2').to.be.true
     expect(ShoppingCart.isItemInCart(5), 'item with id 5').to.be.true
