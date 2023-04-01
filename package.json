@@ -22,7 +22,7 @@
     "@babel/plugin-proposal-private-methods": "^7.13.0",
     "@babel/preset-env": "^7.13.12",
     "@babel/register": "^7.13.14",
-    "@bahmutov/cypress-code-coverage": "^2.1.0",
+    "@bahmutov/cypress-code-coverage": "^2.2.0",
     "@cypress/instrument-cra": "^1.4.0",
     "chai-sorted": "^0.2.0",
     "cypress": "^12.8.1",
