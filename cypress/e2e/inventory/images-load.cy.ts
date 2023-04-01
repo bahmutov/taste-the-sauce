@@ -22,7 +22,20 @@ describe('Regular user', { viewportHeight: 1200 }, () => {
     // if the image does not load, throw an error
     // with all details (alt and src attributes)
     // But if the image is ok, then there should be no Command Log messages
-    //
+    cy.get('img').each(($image: JQuery<HTMLImageElement>) => {
+      // $image is a jQuery object with a single IMG element inside
+      const { naturalWidth, src, alt } = $image[0]
+      if (!alt) {
+        throw new Error(`Image ${src} does not have alt property`)
+      }
+      if (!naturalWidth) {
+        throw new Error(`
+          Image "${alt}" did not load
+          url: ${src}
+        `)
+      }
+    })
     // log a message that all images have loaded successfully
+    cy.log('**all images load 🏞️**')
   })
 })

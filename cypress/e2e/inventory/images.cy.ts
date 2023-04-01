@@ -3,12 +3,6 @@ import { LoginPage } from '@support/pages/login.page'
 
 describe('Regular user', { viewportHeight: 1200 }, () => {
   beforeEach(() => {
-    // uncomment to simulate an image load failure
-    // cy.intercept(
-    //   { resourceType: 'image', pathname: /\/bolt-shirt/ },
-    //   { statusCode: 404 },
-    // )
-
     const user: LoginInfo = Cypress.env('users').standard
     LoginPage.login(user.username, user.password)
     cy.visit('/inventory.html')
