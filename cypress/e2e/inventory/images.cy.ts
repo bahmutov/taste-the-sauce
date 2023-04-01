@@ -27,4 +27,12 @@ describe('Regular user', { viewportHeight: 1200 }, () => {
         })
       })
   })
+
+  it('loads every image', () => {
+    // iterate over every image on the page
+    // https://on.cypress.io/get
+    // https://on.cypress.io/each
+    // confirm the image element has loaded using its naturalWidth property
+    // Tip: include the alt text in the assertion message
+  })
 })
