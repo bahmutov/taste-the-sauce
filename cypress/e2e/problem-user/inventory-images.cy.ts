@@ -11,14 +11,18 @@ describe('Problem user', { viewportHeight: 1200 }, () => {
   it('shows 404 thumbnail images', () => {
     // get all inventory item images
     // and confirm there are more than 3 items
-    //
-    // get the attribute "src" from each element
-    //
-    // and pass it to a "should(callback)" function
-    //
-    // we want to confirm the following in these image urls:
-    // all urls should be the same
-    //
-    // the one url should include "sl-404" string
+    cy.get('img.inventory_item_img')
+      .should('have.length.greaterThan', 3)
+      // get the attribute "src" from each element
+      .mapInvoke('getAttribute', 'src')
+      // and pass it to a "should(callback)" function
+      .should((urls: string[]) => {
+        // we want to confirm the following in these image urls:
+        // all urls should be the same
+        const unique = Cypress._.uniq(urls)
+        expect(unique, 'image urls').to.have.length(1)
+        // the one url should include "sl-404" string
+        expect(unique[0], 'included 404').to.include('sl-404')
+      })
   })
 })
