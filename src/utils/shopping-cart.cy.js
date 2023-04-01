@@ -25,7 +25,7 @@ describe('ShoppingCart', () => {
   it('checks if an item is in the cart', () => {
     // set the cart contents to be array [2, 5]
     //
-    // confirm the shopping cart has item with id 2 and 4
+    // confirm the shopping cart has item with id 2 and 5
     // but does not have an item with id 1
   })
 
