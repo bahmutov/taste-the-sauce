@@ -61,7 +61,6 @@ function Login(props) {
   }
 
   const handleUserChange = (evt) => {
-    console.log('set username', evt.target.value)
     setUsername(evt.target.value)
   }
 
