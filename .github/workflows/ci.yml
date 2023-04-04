@@ -4,7 +4,7 @@ jobs:
   # run end-to-end tests using the standard workflow
   # https://github.com/bahmutov/cypress-workflows
   e2e:
-    uses: bahmutov/cypress-workflows/.github/workflows/standard.yml@v1
+    uses: bahmutov/cypress-workflows/.github/workflows/split.yml@v1
     with:
       # use 4 containers
       n: 4
