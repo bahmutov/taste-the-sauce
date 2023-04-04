@@ -1,22 +1,31 @@
 name: ci
 on: [push]
 jobs:
-  # https://github.com/bahmutov/cypress-workflows
-  e2e:
-    uses: bahmutov/cypress-workflows/.github/workflows/split.yml@v1
+  # check if the tests pass TypeScript check step
+  # and there are no exclusive tests accidentally left in the code
+  checks:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+      # https://github.com/cypress-io/github-action
+      - name: Install 📦
+        uses: cypress-io/github-action@v5
+        with:
+          runTests: false
+      - name: Check types 🧹
+        run: npm run lint
+      - name: Catch it.only tests 🫴
+        run: npm run only
+
+  # run end-to-end and component tests in parallel
+  tests:
+    needs: checks
+    uses: bahmutov/cypress-workflows/.github/workflows/split.yml@v2
     with:
-      # use 4 containers
-      n: 4
-      build: npm run lint
+      nE2E: 4 # use 4 containers for E2E tests
+      nComponent: 2 # use 2 containers for component tests
       start: npm run start-18
       wait-on: 'http://127.0.0.1:3000'
-      # merge code coverage into a single report
-      coverage: true
-
-  components:
-    uses: bahmutov/cypress-workflows/.github/workflows/split.yml@v1
-    with:
-      n: 2 # split specs across 2 containers
-      component: true
-      # merge component code coverage into a single report
+      # merge E2E and component code coverage into a single report
       coverage: true
