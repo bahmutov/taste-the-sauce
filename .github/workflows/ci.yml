@@ -6,14 +6,13 @@ jobs:
   e2e:
     uses: bahmutov/cypress-workflows/.github/workflows/standard.yml@v1
     with:
-      # check the spec types in the "build" step
-      # since we don't have any specific build for our app
-      # don't forget to start the application
-      # and wait for the "http://127.0.0.1:3000" to respond
-      # Note: GitHub Actions have Node v18 installed
+      # use 4 containers
+      n: 4
       build: npm run lint
       start: npm run start-18
       wait-on: 'http://127.0.0.1:3000'
+      # merge code coverage into a single report
+      coverage: true
 
   # in a separate job, run component tests
   # using the standard workflow
