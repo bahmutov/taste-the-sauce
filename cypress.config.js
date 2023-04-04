@@ -59,6 +59,7 @@ module.exports = defineConfig({
   component: {
     setupNodeEvents(cypressOn, config) {
       const on = cypressOnFix(cypressOn)
+      cypressSplit(on, config)
       // https://github.com/bahmutov/cypress-code-coverage
       require('@bahmutov/cypress-code-coverage/plugin')(on, config)
       // IMPORTANT to return the config object

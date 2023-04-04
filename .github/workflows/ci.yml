@@ -13,10 +13,10 @@ jobs:
       # merge code coverage into a single report
       coverage: true
 
-  # in a separate job, run component tests
-  # using the standard workflow with 1 container
-  # https://github.com/bahmutov/cypress-workflows
   components:
-    uses: bahmutov/cypress-workflows/.github/workflows/standard.yml@v1
+    uses: bahmutov/cypress-workflows/.github/workflows/split.yml@v1
     with:
+      n: 2 # split specs across 2 containers
       component: true
+      # merge component code coverage into a single report
+      coverage: true
