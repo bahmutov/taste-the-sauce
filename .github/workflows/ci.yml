@@ -1,7 +1,6 @@
 name: ci
 on: [push]
 jobs:
-  # run end-to-end tests using the standard workflow
   # https://github.com/bahmutov/cypress-workflows
   e2e:
     uses: bahmutov/cypress-workflows/.github/workflows/split.yml@v1
@@ -15,7 +14,7 @@ jobs:
       coverage: true
 
   # in a separate job, run component tests
-  # using the standard workflow
+  # using the standard workflow with 1 container
   # https://github.com/bahmutov/cypress-workflows
   components:
     uses: bahmutov/cypress-workflows/.github/workflows/standard.yml@v1
