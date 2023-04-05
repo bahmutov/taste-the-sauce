@@ -26,11 +26,11 @@ export function verifyCredentials(username, password) {
  */
 export function setCredentials(username, password) {
   const date = new Date()
-  const seconds = 10 * 60
+  // const seconds = 10 * 60
   // set a really short expiration duration
   // to show how cy.session needs to check
   // the cookie validity
-  // const seconds = 10
+  const seconds = 10
   date.setTime(date.getTime() + seconds * 1000)
 
   Cookies.set(SESSION_USERNAME, username, { expires: date })
