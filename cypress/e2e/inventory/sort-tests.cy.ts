@@ -13,6 +13,7 @@ describe('sorting tests', () => {
         // will be saved in memory as data session "user session"
         cy.getCookie('session-username').should('exist')
       },
+      expires: 9_000, // 9 seconds
       // the argument is the memory value of this data session
       recreate(userCookie: Cypress.Cookie) {
         cy.setCookie('session-username', userCookie.value, userCookie)
