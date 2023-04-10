@@ -31,7 +31,11 @@ const CartItem = ({ item, history, showButton }) => {
     )
 
     return (
-      <div className="cart_item">
+      <div
+        className="cart_item"
+        data-item-id={item.id}
+        data-item-quantity={shoppingCartItem.n}
+      >
         <input
           type="number"
           className="cart_quantity"
