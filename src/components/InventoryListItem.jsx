@@ -21,6 +21,7 @@ const InventoryListItem = (props) => {
 
     ShoppingCart.addItem(itemId)
     setItemInCart(true)
+    dataLayer.push({ event: 'addToCart', itemId })
   }
 
   const removeFromCart = (itemId) => {
@@ -33,7 +34,9 @@ const InventoryListItem = (props) => {
 
     ShoppingCart.removeItem(itemId)
     setItemInCart(false)
+    dataLayer.push({ event: 'removeFromCart', itemId })
   }
+
   let linkId = id
   if (isProblemUser()) {
     linkId += 1

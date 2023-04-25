@@ -110,20 +110,29 @@ describe('Cart', { viewportHeight: 1200 }, () => {
       { id: 5, n: 3 },
     ])
     // visit the cart page
-    //
+    cy.visit('/cart.html')
     // there should be 3 cart item elements on the page
-    //
-    // grab the first cart item element
-    // https://on.cypress.io/first
-    //
-    // the next commands come from cypress-map plugin
-    // the first cart element should have property "dataset"
-    // that you can print to Command Log
-    // see cy.prop and cy.print
-    //
-    // the dataset is an object with string values
-    // which you should map to numbers using cy.map
-    //
-    // the object should have item id 1 with quantity 1
+    cy.get('.cart_list .cart_item')
+      .should('have.length', 3)
+      // grab the first cart item element
+      // https://on.cypress.io/first
+      .first()
+      // the next commands come from cypress-map plugin
+      // the first cart element should have property "dataset"
+      // that you can print to Command Log
+      // see cy.prop and cy.print
+      .prop('dataset')
+      .print('data %o')
+      // the dataset is an object with string values
+      // which you should map to numbers using cy.map
+      .map({
+        itemId: Number,
+        itemQuantity: Number,
+      })
+      // the object should have item id 1 with quantity 1
+      .should('deep.equal', {
+        itemId: 1,
+        itemQuantity: 1,
+      })
   })
 })
