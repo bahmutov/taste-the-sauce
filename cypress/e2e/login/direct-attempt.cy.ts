@@ -1,8 +1,11 @@
 import { LoginPage } from '@support/pages/login.page'
 
+const isLocal = Cypress.config('baseUrl')?.includes('local')
+
 describe('anonymous user', () => {
   it('gets an error trying to visit the inventory page', () => {
-    cy.visit('/inventory.html')
+    const pageUrl = isLocal ? '/inventory.html' : '/?/inventory.html'
+    cy.visit(pageUrl)
     // confirm we are on root page
     // https://on.cypress.io/location
     cy.location('pathname').should('equal', '/')

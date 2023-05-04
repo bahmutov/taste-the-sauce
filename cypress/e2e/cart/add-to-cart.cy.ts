@@ -2,6 +2,8 @@ import { LoginPage } from '@support/pages/login.page'
 import { InventoryPage } from '@support/pages/inventory.page'
 import { LoginInfo } from '..'
 
+const isLocal = Cypress.config('baseUrl')?.includes('local')
+
 describe('Cart', () => {
   // create a small type on the fly using jsdoc comment
   // just to help type check help us
@@ -15,7 +17,8 @@ describe('Cart', () => {
   // or restore the previous user session
   beforeEach(() => {
     LoginPage.login(user.username, user.password)
-    cy.visit('/inventory.html')
+    const pageUrl = isLocal ? '/inventory.html' : '/?/inventory.html'
+    cy.visit(pageUrl)
     cy.location('pathname').should('equal', '/inventory.html')
   })
 

@@ -42,6 +42,12 @@ module.exports = defineConfig({
     setupNodeEvents(cypressOn, config) {
       // implement node event listeners here
       // and load any plugins that require the Node environment
+      console.log('the base url', config.baseUrl)
+      if (!config.baseUrl.includes('localhost')) {
+        console.log('disabled the code coverage plugin')
+        config.env.coverage = false
+      }
+
       // fix https://github.com/cypress-io/cypress/issues/22428
       const on = cypressOnFix(cypressOn)
       cypressSplit(on, config)
