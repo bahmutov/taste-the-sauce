@@ -83,7 +83,7 @@ function Login(props) {
                   value={username}
                   onChange={handleUserChange}
                   testId="username"
-                  placeholder="Username"
+                  placeholder="UserName"
                   // Custom
                   id="user-name"
                   name="user-name"
