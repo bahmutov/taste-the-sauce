@@ -16,6 +16,9 @@ jobs:
       - name: Install Cypress
         run: npm install Cypress
         
+      - name: Start local server
+        run: npm start
+        
       - name: Cypress run
         run: npx cypress run
         
