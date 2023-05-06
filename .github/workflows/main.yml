@@ -9,8 +9,13 @@ jobs:
       # Install NPM dependencies, cache them correctly
       # and Cypress run
       # https://github.com/cypress-io/github-action
+      
       - name: Install dependencies
         run: npm install
+        
+      - name: Install Cypress
+        run: npm install Cypress
+        
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with: 
