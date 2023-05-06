@@ -1,14 +1,21 @@
-name: With server
-on: push
+name: CI
+
+on: [push]
+
 jobs:
-  cypress-run:
-    runs-on: ubuntu-22.04
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-        with:
-          start: npm start
-        
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Cypress tests
+      uses: cypress-io/github-action@v2
+      with:
+        browser: chrome
+
        
