@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node18.12.0-chrome106-ff106
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -16,10 +16,10 @@ jobs:
     - name: Start local server
       run: |
         nohup npm start &
-        sleep 10 # ждем 10 секунд, чтобы сервер успел запуститься
+        sleep 15 # ждем 15 секунд, чтобы сервер успел запуститься
         
     - name: Run Cypress tests
-      run: npx cypress run
-    
+      run: npx cypress run --browser chrome
+     
      
        
