@@ -1,23 +1,16 @@
-name: CI
-
+name: End-to-end tests
 on: [push]
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  cypress-run:
+    runs-on: ubuntu-22.04
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Start local server
-      run: npm start
-
-    - name: Run Cypress tests
-      uses: cypress-io/github-action@v2
-      with:
-        browser: chrome
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install NPM dependencies, cache them correctly
+      # and Cypress run
+      # https://github.com/cypress-io/github-action
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with: 
+          browser: chrome
        
