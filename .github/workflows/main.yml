@@ -1,18 +1,25 @@
-name: E2E in custom container
-on: push
+name: CI
+
+on: [push]
+
 jobs:
-  cypress-run:
-    runs-on: ubuntu-22.04
-    # Cypress Docker image with Chrome v106
-    # and Firefox v106 pre-installed
+  build:
+    runs-on: ubuntu-latest
     container: cypress/browsers:node18.12.0-chrome106-ff106
     steps:
-        - name: Start local server
-          run: |
-            nohup npm start &
-            sleep 3 # ждем 3 секунды, чтобы сервер успел запуститься
-        - uses: actions/checkout@v3
-          with:
-           browser: chrome
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Start local server
+      run: |
+        nohup npm start &
+        sleep 10 # ждем 10 секунд, чтобы сервер успел запуститься
+        
+    - name: Run Cypress tests
+      run: npx cypress run
+    
      
        
