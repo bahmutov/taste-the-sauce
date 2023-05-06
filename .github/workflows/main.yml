@@ -16,7 +16,7 @@ jobs:
     - name: Start local server
       run: |
         nohup npm start &
-        sleep 10 # ждем 10 секунд, чтобы сервер успел запуститься
+        sleep 30 # ждем 30 секунд, чтобы сервер успел запуститься
         
     - name: Run Cypress tests
       uses: cypress-io/github-action@v2
