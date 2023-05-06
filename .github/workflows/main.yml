@@ -1,13 +1,27 @@
-name: Chrome
-on: push
+name: CI
+
+on: [push]
+
 jobs:
-  chrome:
-    runs-on: ubuntu-22.04
-    name: E2E on Chrome
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: cypress-io/github-action@v5
-        with:
-          browser: chrome
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start local server
+      run: |
+        nohup npm start &
+        sleep 3 # ждем 3 секунды, чтобы сервер успел запуститься
+
+    - name: Run Cypress tests
+      uses: cypress-io/github-action@v2
+      with:
+        browser: chrome
+
      
        
