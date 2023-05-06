@@ -19,6 +19,7 @@ jobs:
         sleep 3 # ждем 3 секунды, чтобы сервер успел запуститься
         
     - name: Run Cypress tests
-      run: npx cypress run
-
+      uses: cypress-io/github-action@v2
+      with:
+        browser: chrome
        
