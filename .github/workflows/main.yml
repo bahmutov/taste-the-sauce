@@ -8,13 +8,15 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install dependencies
       run: npm install
-
+      
     - name: Start local server
-      run: npm start
+      run: |
+        nohup npm start &
+        sleep 15 # ждем 15 секунд, чтобы сервер успел запуститься
         
     - name: Run Cypress tests
       run: npx cypress run --browser chrome
@@ -22,14 +24,14 @@ jobs:
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
-          name: cypress-reports
-          path: cypress/reports
+          name: cypress-screenshots
+          path: cypress/screenshots
       # Test run video was always captured, so this action uses "always()" condition
     - uses: actions/upload-artifact@v3
       if: always()
       with:
-          name: cypress-reports
-          path: cypress/reports
+          name: cypress-videos
+          path: cypress/videos
      
      
        
