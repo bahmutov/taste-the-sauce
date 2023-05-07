@@ -32,7 +32,7 @@
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "cypress run",
-    "dev": "start-test 3000 'cypress open'"
+    "dev": "start-test 3000 'cypress run'"
   },
   "browserslist": {
     "production": [
