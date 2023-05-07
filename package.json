@@ -26,13 +26,11 @@
     "prop-types": "^15.7.2",
     "cypress": "^12.11.0",
     "cypress-mochawesome-reporter": "^3.2.3",
-    "start-server-and-test": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "cypress run"
-    "dev": "start-test 3000 'cypress open'"
   },
   "browserslist": {
     "production": [
