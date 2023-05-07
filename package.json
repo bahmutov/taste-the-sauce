@@ -25,12 +25,12 @@
     "prettier": "^2.8.3",
     "prop-types": "^15.7.2",
     "cypress": "^12.11.0",
-    "cypress-mochawesome-reporter": "^3.2.3",
+    "cypress-mochawesome-reporter": "^3.2.3"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
-    "test": "cypress run",
+    "test": "cypress run"
   },
   "browserslist": {
     "production": [
