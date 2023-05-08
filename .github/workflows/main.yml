@@ -13,25 +13,23 @@ jobs:
     - name: Install dependencies
       run: npm install
       
-    - name: Start local server
-      run: |
-        nohup npm start &
-        sleep 15 # ждем 15 секунд, чтобы сервер успел запуститься
+    - name: Start local server 
+      run: nohup npm start & npx -- wait-on http://127.0.0.1:3000 -t 20000
         
     - name: Run Cypress tests
       run: npx cypress run --browser chrome
       
-    - uses: actions/upload-artifact@v3
-      if: failure()
-      with:
-          name: cypress-reports
-          path: cypress/reports
-      # Test run video was always captured, so this action uses "always()" condition
-    - uses: actions/upload-artifact@v3
+    - name: Upload Cypress test reports
+      uses: actions/upload-artifact@v3
       if: always()
       with:
-          name: cypress-reports
-          path: cypress/reports
+        name: cypress-reports
+        path: cypress/reports
+
+     
+     
+     
+       
      
      
      
