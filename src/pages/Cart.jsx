@@ -8,8 +8,31 @@ import SwagLabsFooter from '../components/Footer'
 import HeaderContainer from '../components/HeaderContainer'
 import Button, { BUTTON_SIZES, BUTTON_TYPES } from '../components/Button'
 import './Cart.css'
+import useFetch from 'react-fetch-hook'
 
 const Cart = ({ history }) => {
+  const { isLoading, data } = useFetch('/user-cart', {
+    headers: {
+      Accept: 'application/json',
+    },
+  })
+
+  if (isLoading) {
+    return (
+      <div id="page_wrapper" className="page_wrapper">
+        <div id="contents_wrapper">
+          <HeaderContainer secondaryTitle="Your Cart" />
+          <div className="loading">Loading cart...</div>
+        </div>
+      </div>
+    )
+  }
+
+  if (!isLoading && data) {
+    console.log(data)
+    ShoppingCart.setCartContents(data)
+  }
+
   const contents = ShoppingCart.getCartContents()
 
   return (
