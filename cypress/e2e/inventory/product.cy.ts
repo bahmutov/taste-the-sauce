@@ -38,4 +38,22 @@ describe('Product', () => {
     // the browser should navigate to the item's page
     // confirm the page has the right item name
   })
+
+  it('adds 3 random items to the cart', () => {
+    // randomly pick 3 items on the page
+    // Tip: use cy.sample query command from cypress-map plugin
+    //
+    // confirm the subject is a jQuery object
+    // with 3 elements
+    //
+    // from 3 items get the "Add to Cart" buttons
+    //
+    // confirm there are three buttons
+    // click on them all
+    //
+    // the cart badge should show 3 items in the cart
+    //
+    // there should be 3 item buttons "Remove" from cart
+    //
+  })
 })
