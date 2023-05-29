@@ -89,6 +89,7 @@ function Login(props) {
                   name="user-name"
                   autoCorrect="off"
                   autoCapitalize="none"
+                  minLength="6"
                 />
                 <InputError
                   isError={Boolean(error)}
