@@ -5,7 +5,7 @@ import { LoginPage } from '@support/pages/login.page'
 // if (Math.random() < 1) {
 
 // this test will fail if the popup appears and blocks the form
-it.only('fills the login form', () => {
+it.skip('fills the login form', () => {
   cy.visit('/')
   // slowly type the username and the password values
   // "username" and "password"
@@ -24,23 +24,7 @@ it('closes a random popup', () => {
   // create a new MutationObserver object to observe
   // child list changes on the "window.document.body" node
   // https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
-  cy.visit('/').then((window) => {
-    const body = window.document.body
-    const callback = (mutations: MutationRecord[]) => {
-      // if you see a new Node with id "modal" has been added
-      // set its style to "display: none" to hide it
-      if (mutations.length && mutations[0].addedNodes.length) {
-        // @ts-ignore TS2339
-        if (mutations[0].addedNodes[0].id === 'modal') {
-          console.log('added modal')
-          // @ts-ignore TS2339
-          mutations[0].addedNodes[0].style.display = 'none'
-        }
-      }
-    }
-    const observer = new MutationObserver(callback)
-    observer.observe(body, { childList: true })
-  })
+  cy.visit('/')
   // slowly type the username and the password values
   // "username" and "password"
   LoginPage.getUsername().type('username', { delay: 200 })
@@ -56,23 +40,7 @@ it('closes a random popup (window:load)', () => {
   // create a new MutationObserver object to observe
   // child list changes on the "window.document.body" node
   // https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
-  cy.on('window:load', (window) => {
-    const body = window.document.body
-    const callback = (mutations: MutationRecord[]) => {
-      // if you see a new Node with id "modal" has been added
-      // set its style to "display: none" to hide it
-      if (mutations.length && mutations[0].addedNodes.length) {
-        // @ts-ignore TS2339
-        if (mutations[0].addedNodes[0].id === 'modal') {
-          console.log('added modal')
-          // @ts-ignore TS2339
-          mutations[0].addedNodes[0].style.display = 'none'
-        }
-      }
-    }
-    const observer = new MutationObserver(callback)
-    observer.observe(body, { childList: true })
-  })
+  cy.on('window:load', (window) => {})
 
   // visit the login page "/"
   // https://on.cypress.io/visit
@@ -94,24 +62,7 @@ describe.skip('popup appears', () => {
     // create a new MutationObserver object to observe
     // child list changes on the "window.document.body" node
     // https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
-    cy.on('window:load', (window) => {
-      const body = window.document.body
-      const callback = (mutations: MutationRecord[]) => {
-        // if you see a new Node with id "modal" has been added
-        // set its style to "display: none" to hide it
-        if (mutations.length && mutations[0].addedNodes.length) {
-          // @ts-ignore TS2339
-          if (mutations[0].addedNodes[0].id === 'modal') {
-            // @ts-ignore TS2339
-            window.popupHandled = true
-            // @ts-ignore TS2339
-            mutations[0].addedNodes[0].style.display = 'none'
-          }
-        }
-      }
-      const observer = new MutationObserver(callback)
-      observer.observe(body, { childList: true })
-    })
+    cy.on('window:load', (window) => {})
 
     // visit the login page "/"
     // https://on.cypress.io/visit
@@ -125,10 +76,10 @@ describe.skip('popup appears', () => {
     LoginPage.getUsername().should('have.value', 'username')
     LoginPage.getPassword().should('have.value', 'password')
     // confirm the popup was added and hidden (retries)
-    cy.window().should('have.property', 'popupHandled', true)
   })
 
   it('closes a random popup with object property confirmation', () => {
+    // use this object to flag the popup handled
     const o = {
       popupHandled: false,
     }
@@ -136,23 +87,7 @@ describe.skip('popup appears', () => {
     // create a new MutationObserver object to observe
     // child list changes on the "window.document.body" node
     // https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
-    cy.on('window:load', (window) => {
-      const body = window.document.body
-      const callback = (mutations: MutationRecord[]) => {
-        // if you see a new Node with id "modal" has been added
-        // set its style to "display: none" to hide it
-        if (mutations.length && mutations[0].addedNodes.length) {
-          // @ts-ignore TS2339
-          if (mutations[0].addedNodes[0].id === 'modal') {
-            o.popupHandled = true
-            // @ts-ignore TS2339
-            mutations[0].addedNodes[0].style.display = 'none'
-          }
-        }
-      }
-      const observer = new MutationObserver(callback)
-      observer.observe(body, { childList: true })
-    })
+    cy.on('window:load', (window) => {})
 
     // visit the login page "/"
     // https://on.cypress.io/visit
@@ -166,7 +101,6 @@ describe.skip('popup appears', () => {
     LoginPage.getUsername().should('have.value', 'username')
     LoginPage.getPassword().should('have.value', 'password')
     // confirm the popup was added and hidden (retries)
-    cy.wrap(o).should('have.property', 'popupHandled', true)
   })
 
   it('closes a random popup with spy confirmation', () => {
@@ -174,27 +108,9 @@ describe.skip('popup appears', () => {
     // create a spy and give it an alias "modalClosed"
     // https://on.cypress.io/spy
     // https://on.cypress.io/as
-    const modalClosed = cy.spy().as('modalClosed')
 
     // repeat the same setup as in the previous test
-    cy.visit('/').then((window) => {
-      const body = window.document.body
-      const callback = (mutations: MutationRecord[]) => {
-        if (mutations.length && mutations[0].addedNodes.length) {
-          // @ts-ignore TS2339
-          if (mutations[0].addedNodes[0].id === 'modal') {
-            console.log('added modal')
-            // @ts-ignore TS2339
-            mutations[0].addedNodes[0].style.display = 'none'
-            // after hiding the modal element using "display: none"
-            // call the spy function we created above
-            modalClosed()
-          }
-        }
-      }
-      const observer = new MutationObserver(callback)
-      observer.observe(body, { childList: true })
-    })
+    cy.visit('/').then((window) => {})
 
     // slowly type the username and the password values
     // "username" and "password"
@@ -207,7 +123,6 @@ describe.skip('popup appears', () => {
 
     cy.log('**confirm the modal was hidden**')
     // confirm the spy "modalClosed" was called once (retries)
-    cy.get('@modalClosed').should('have.been.calledOnce')
   })
 
   it('waits for the modal to click close', () => {
