@@ -39,3 +39,7 @@ To create a production build, use npm run build.
 Open the browser and point at `localhost:3000`, you should see the login page.
 
 The original web application was forked from [saucelabs/sample-app-web](https://github.com/saucelabs/sample-app-web) repo.
+
+## See also
+
+- Vite version of this application in [bahmutov/taste-the-sauce-vite](https://github.com/bahmutov/taste-the-sauce-vite)
