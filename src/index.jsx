@@ -37,33 +37,3 @@ ReactDOM.render(routing, document.getElementById('root'))
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
 serviceWorkerRegistration.register()
-
-/* istanbul ignore next */
-if (window.Cypress) {
-  // enable the popup in some situations
-  // by varying the float limit. 1 means the popup always appears
-  // 0 means the popup will never appear
-  if (Math.random() < 1) {
-    const delay = Cypress._.random(1000, 2000)
-    setTimeout(() => {
-      Cypress.$(document.body).append(
-        Cypress.$(`
-        <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);
-          display: flex; align-items: center; justify-content: center" id="modal">
-          <div style="width: 200px; height: 300px; background-color: white; padding: 1rem">
-            <div style="float: right; width: 28px; height: 28px; border: 1px solid black;
-              font-size: 20px; font-weight: bold; text-align: center; line-height: 28px; autofocus"
-              id="close-modal">X</div>
-            <div style="display: flex; flex-direction: column; margin-top: 2rem">
-              Modal with some promotion
-            </div>
-          </div>
-        </div>
-      `),
-      )
-      document.getElementById('close-modal').addEventListener('click', () => {
-        document.getElementById('modal').style.display = 'none'
-      })
-    }, delay)
-  }
-}
