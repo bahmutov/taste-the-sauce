@@ -19,6 +19,7 @@ const InventoryListItem = (props) => {
       }
     }
 
+    console.log('add to cart item %d', itemId)
     ShoppingCart.addItem(itemId)
     setItemInCart(true)
     dataLayer.push({ event: 'addToCart', itemId })
