@@ -121,6 +121,12 @@ function Login(props) {
           <div className="bot_column" />
         </div>
         <div className="login_credentials_wrap">
+          <div className="login_links">
+            <div>
+              Jump straight to <a href="/cart.html">cart</a>,{' '}
+              <a href="/inventory.html">inventory</a>
+            </div>
+          </div>
           <div className="login_credentials_wrap-inner">
             <div id="login_credentials" className="login_credentials">
               <h4>Accepted usernames are:</h4>
