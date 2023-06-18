@@ -20,10 +20,11 @@ jobs:
       run: npx cypress run --browser chrome
       
     - name: Upload Cypress test reports
-      uses: peaceiris/actions-gh-pages@v3
+      uses: actions/upload-artifact@v3
+      if: always()
       with:
-        personal_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: cypress\reports\html
+        name: cypress-reports
+        path: cypress/reports
 
      
      
