@@ -1,4 +1,4 @@
-name: CI 22
+name: CI
 
 on: [push]
 
@@ -20,11 +20,10 @@ jobs:
       run: npx cypress run --browser chrome
       
     - name: Upload Cypress test reports
-      uses: actions/upload-artifact@v3
-      if: always()
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        name: cypress-reports
-        path: cypress/reports
+        personal_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
 
      
      
