@@ -9,6 +9,15 @@
   border: 2px solid #ededef;
 }
 
+.inventory_details .breadcrumbs {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.inventory_details .breadcrumbs a {
+  color: white;
+}
+
 .inventory_details_container .inventory_details_img_container {
   flex: 2;
   display: block;
@@ -26,7 +35,7 @@
 }
 
 .inventory_details_container .inventory_details_name {
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-weight: 500;
   color: #e2231a;
@@ -34,7 +43,7 @@
 }
 
 .inventory_details_container .inventory_details_desc {
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 14px;
   color: #777777;
   margin-bottom: 30px;
@@ -43,7 +52,7 @@
 .inventory_details_container .inventory_details_price {
   border-top: 2px solid #ededef;
   color: #e2231a;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 22px;
   display: inline-block;
   padding-top: 10px;
