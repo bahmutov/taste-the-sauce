@@ -6,7 +6,7 @@ import { LoginInfo } from '..'
 // It should host a page at "localhost:5555"
 // with the name of the item the user won
 it('gets the item name from another domain', () => {
-  // switch to the 2nd domain "http://localhost:555"
+  // switch to the 2nd domain "http://localhost:5555"
   // https://on.cypress.io/origin
   // visit the base page of the second domain
   // https://on.cypress.io/visit
