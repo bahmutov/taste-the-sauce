@@ -15,6 +15,7 @@
     "react-fetch-hook": "^1.9.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
+    "serve": "^14.2.0",
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {
@@ -51,7 +52,8 @@
     "only": "stop-only --folder cypress/e2e --folder src",
     "only:warn": "stop-only --warn --folder cypress/e2e --folder src",
     "names": "find-cypress-specs --names",
-    "names:component": "find-cypress-specs --names --component"
+    "names:component": "find-cypress-specs --names --component",
+    "start:2nd": "serve -p 5555 2nd"
   },
   "browserslist": {
     "production": [
