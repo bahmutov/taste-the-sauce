@@ -6,8 +6,6 @@
 
 ![Store inventory](./images/store2.png)
 
-🎓 This is the example application for the course [Testing The Swag Store](https://cypress.tips/courses/swag-store).
-
 ## Install
 
 Requires Node v16+
