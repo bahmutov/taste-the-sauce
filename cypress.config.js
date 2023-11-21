@@ -35,9 +35,7 @@ module.exports = defineConfig({
       'cypress-watch-and-reload': {
         watch: ['src/**'],
       },
-      coverage: {
-        exclude: ['**/src/service*.js'],
-      },
+      coverage: false,
     },
     setupNodeEvents(cypressOn, config) {
       // implement node event listeners here
