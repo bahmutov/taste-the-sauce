@@ -27,7 +27,7 @@
     "@bahmutov/cypress-code-coverage": "^2.5.0",
     "@cypress/instrument-cra": "^1.4.0",
     "chai-sorted": "^0.2.0",
-    "cypress": "^12.13.0",
+    "cypress": "^13.5.1",
     "cypress-data-session": "^2.5.0",
     "cypress-map": "^1.21.0",
     "cypress-on-fix": "^1.0.1",
@@ -41,8 +41,7 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "start": "react-scripts -r @cypress/instrument-cra start",
-    "start-18": "react-scripts -r @cypress/instrument-cra --openssl-legacy-provider start",
+    "start": "react-scripts -r @cypress/instrument-cra --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "cypress run",
     "dev": "start-test 3000 cy:open",
@@ -52,8 +51,7 @@
     "only": "stop-only --folder cypress/e2e --folder src",
     "only:warn": "stop-only --warn --folder cypress/e2e --folder src",
     "names": "find-cypress-specs --names",
-    "names:component": "find-cypress-specs --names --component",
-    "start:2nd": "serve -p 5555 2nd"
+    "names:component": "find-cypress-specs --names --component"
   },
   "browserslist": {
     "production": [
