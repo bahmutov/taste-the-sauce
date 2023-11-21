@@ -22,5 +22,14 @@ describe('Cart', () => {
   it('adds the first item to cart', { viewportHeight: 1200 }, () => {
     const po = new InventoryPage()
     po.addToCart(3)
+      // the POM method yields the product name
+      // let's confirm it is a string
+      // Bonus: assertion also prints it
+      .should('be.a', 'string')
+      .then((productName) => {
+        po.goToCart()
+        // confirm the item is in the cart
+        cy.contains('.inventory_item_name', productName)
+      })
   })
 })
