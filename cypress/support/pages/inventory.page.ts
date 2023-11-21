@@ -1,18 +1,15 @@
 export class InventoryPage {
   constructor() {}
   addToCart(nthItem: number) {
-    // return the entire chain of Cypress commands
-    return cy
-      .get('.inventory_item_name')
+    // stores the item name in the alias "itemName"
+    cy.get('.inventory_item_name')
       .eq(nthItem - 1)
       .invoke('text')
-      .then((productName) => {
-        cy.get('button.btn_primary.btn_inventory')
-          .eq(nthItem - 1)
-          .click()
-        // yield the product name
-        cy.wrap(productName, { log: false })
-      })
+      .as('itemName')
+
+    cy.get('button.btn_primary.btn_inventory')
+      .eq(nthItem - 1)
+      .click()
   }
   goToCart() {
     cy.get('a.shopping_cart_link').click()
