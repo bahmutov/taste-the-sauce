@@ -23,10 +23,9 @@ describe('Cart', () => {
     const po = new InventoryPage()
     po.addToCart(3)
     // the POM method stores the product name in the alias
-    cy.get('@itemName')
+    cy.get<string>('@itemName')
       .should('be.a', 'string')
-      // @ts-ignore
-      .then((productName: string) => {
+      .then((productName) => {
         po.goToCart()
         // confirm the item is in the cart
         cy.contains('.inventory_item_name', productName)
