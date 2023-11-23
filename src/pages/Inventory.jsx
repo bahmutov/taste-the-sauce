@@ -9,6 +9,13 @@ import { sortAsc, sortDesc, sortHiLo, sortLoHi } from '../utils/Sorting'
 import Select from '../components/Select'
 import './Inventory.css'
 
+const sortingValues = {
+  az: 'Name (A to Z)',
+  za: 'Name (Z to A)',
+  lohi: 'Price (low to high)',
+  hilo: 'Price (high to low)',
+}
+
 const Inventory = () => {
   const [inventoryList, setInventoryList] = useState(
     sortAsc(InventoryData, 'name'),
@@ -75,7 +82,11 @@ const Inventory = () => {
         />
         <div id="inventory_container">
           <div>
-            <div id="inventory_container" className="inventory_container">
+            <div
+              id="inventory_container"
+              className="inventory_container"
+              data-test="InventoryPage"
+            >
               <div className="inventory_list">
                 {inventoryList.map((item, i) => {
                   return (
@@ -86,6 +97,7 @@ const Inventory = () => {
                       name={item.name}
                       desc={item.desc}
                       price={item.price}
+                      dataTestId="InventoryPageItem"
                     />
                   )
                 })}
@@ -94,6 +106,10 @@ const Inventory = () => {
           </div>
         </div>
       </div>
+      <center>
+        Items were sorted using{' '}
+        <span data-test="sorting-name">{sortingValues[activeOption]}</span> sort
+      </center>
       <SwagLabsFooter />
     </div>
   )
