@@ -20,8 +20,31 @@ Cypress.Commands.add(
   },
 )
 
-Cypress.Commands.add('getByTest', (testId) => {
-  const log = Cypress.log({ name: 'getByTest', message: testId })
-  // query the elements by the "data-test=..." attribute
-  cy.get(`[data-test="${testId}"]`)
-})
+Cypress.Commands.add(
+  'getByTest',
+  { prevSubject: 'optional' },
+  (parentElement, testId, text?: string) => {
+    console.log({ parentElement, testId })
+    const selector = `[data-test="${testId}"]`
+    if (text) {
+      const log = Cypress.log({
+        name: 'getByTest',
+        message: `${testId} "${text}"`,
+      })
+      // query the elements by the "data-test=..." attribute with the given text
+      if (parentElement) {
+        cy.wrap(parentElement, { log: false }).contains(selector, text)
+      } else {
+        cy.contains(selector, text)
+      }
+    } else {
+      const log = Cypress.log({ name: 'getByTest', message: testId })
+      // query the elements by the "data-test=..." attribute
+      if (parentElement) {
+        cy.wrap(parentElement, { log: false }).find(selector)
+      } else {
+        cy.get(selector)
+      }
+    }
+  },
+)

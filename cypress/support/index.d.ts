@@ -12,10 +12,13 @@ declare namespace Cypress {
     fillForm(selectorsValues: object): Chainable<JQuery<HTMLFormElement>>
 
     /**
-     * Returns elements that have "data-test" attribute with the given value
+     * Returns elements that have "data-test" attribute with the given value.
+     * If you provide the text argument, it uses `cy.contains` to find a single
+     * element that includes the given text
      * @example
-     *  getByTest('checkout').should('be.visible')
+     *  cy.getByTest('CartCheckout').should('be.visible')
+     *  cy.getByText('UserName', 'Joe')
      */
-    getByTest(testId: string): Chainable<JQuery<HTMLElement>>
+    getByTest(testId: string, text?: string): Chainable<JQuery<HTMLElement>>
   }
 }
