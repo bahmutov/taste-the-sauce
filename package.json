@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.13.12",
     "@babel/register": "^7.13.14",
     "cypress": "^13.6.1",
+    "cypress-map": "^1.22.0",
     "prettier": "^2.8.3",
     "prop-types": "^15.7.2"
   },
