@@ -25,7 +25,7 @@ it('confirms the item with the lowest price', () => {
     .should('equal', 7.99)
 })
 
-it.only('sorts item by price', () => {
+it('sorts item by price', () => {
   cy.visit('/')
   cy.get('[data-test="username"]').type('standard_user')
   cy.get('[data-test="password"]').type('secret_sauce')

@@ -82,7 +82,7 @@ const InventoryListItem = (props) => {
   const url = isProblemUser() ? 'sl-404.jpg' : image_url
 
   return (
-    <div className="inventory_item">
+    <div className="inventory_item" data-itemid={id}>
       <div className="inventory_item_img">
         <a
           href="#"

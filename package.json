@@ -22,17 +22,26 @@
     "@babel/plugin-proposal-private-methods": "^7.13.0",
     "@babel/preset-env": "^7.13.12",
     "@babel/register": "^7.13.14",
+    "@types/node": "^20.10.5",
     "chai-sorted": "^0.2.0",
     "cypress": "^13.6.1",
+    "cypress-data-session": "^2.8.0",
     "cypress-map": "^1.22.0",
     "prettier": "^2.8.3",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "start-server-and-test": "^2.0.3",
+    "typescript": "^5.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "start-18": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
-    "test": "cypress run"
+    "test": "cypress run",
+    "cy:open": "cypress open --e2e",
+    "dev": "start-server-and-test start http://127.0.0.1:3000 cy:open",
+    "dev1": "start-test 3000 cy:open",
+    "ci": "start-test 3000",
+    "lint": "tsc --noEmit --pretty"
   },
   "browserslist": {
     "production": [
