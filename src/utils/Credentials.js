@@ -1,5 +1,5 @@
-import Cookies from "js-cookie";
-import { SESSION_USERNAME, VALID_PASSWORD, VALID_USERNAMES } from "./Constants";
+import Cookies from 'js-cookie'
+import { SESSION_USERNAME, VALID_PASSWORD, VALID_USERNAMES } from './Constants'
 
 /**
  * Verify the credentials
@@ -11,10 +11,10 @@ import { SESSION_USERNAME, VALID_PASSWORD, VALID_USERNAMES } from "./Constants";
  */
 export function verifyCredentials(username, password) {
   if (password !== VALID_PASSWORD) {
-    return false;
+    return false
   }
 
-  return VALID_USERNAMES.includes(username);
+  return VALID_USERNAMES.includes(username)
 }
 
 /**
@@ -25,17 +25,18 @@ export function verifyCredentials(username, password) {
  * @param {string} password
  */
 export function setCredentials(username, password) {
-  let date = new Date();
-  date.setTime(date.getTime() + 10 * 60 * 1000);
+  const seconds = 10 * 60
+  let date = new Date()
+  date.setTime(date.getTime() + seconds * 1000)
 
-  Cookies.set(SESSION_USERNAME, username, { expires: date });
+  Cookies.set(SESSION_USERNAME, username, { expires: date })
 }
 
 /**
  * Remove the credentials
  */
 export function removeCredentials() {
-  Cookies.remove(SESSION_USERNAME);
+  Cookies.remove(SESSION_USERNAME)
 }
 
 /**
@@ -44,7 +45,7 @@ export function removeCredentials() {
  * @return {boolean}
  */
 export function isProblemUser() {
-  return Cookies.get(SESSION_USERNAME) === "problem_user";
+  return Cookies.get(SESSION_USERNAME) === 'problem_user'
 }
 
 /**
@@ -53,7 +54,7 @@ export function isProblemUser() {
  * @return {boolean}
  */
 export function isPerformanceGlitchUser() {
-  return Cookies.get(SESSION_USERNAME) === "performance_glitch_user";
+  return Cookies.get(SESSION_USERNAME) === 'performance_glitch_user'
 }
 
 /**
@@ -62,7 +63,7 @@ export function isPerformanceGlitchUser() {
  * @return {boolean}
  */
 export function isLockedOutUser() {
-  return Cookies.get(SESSION_USERNAME) === "locked_out_user";
+  return Cookies.get(SESSION_USERNAME) === 'locked_out_user'
 }
 
 /**
@@ -71,8 +72,8 @@ export function isLockedOutUser() {
  * @return {boolean}
  */
 export function isLoggedIn() {
-  const sessionUsername = Cookies.get(SESSION_USERNAME);
-  const isValidUsername = VALID_USERNAMES.includes(sessionUsername);
+  const sessionUsername = Cookies.get(SESSION_USERNAME)
+  const isValidUsername = VALID_USERNAMES.includes(sessionUsername)
 
-  return isValidUsername && sessionUsername !== "locked_out_user";
+  return isValidUsername && sessionUsername !== 'locked_out_user'
 }

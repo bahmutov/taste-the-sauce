@@ -15,13 +15,25 @@ export const LoginPage = {
     return cy.get('[data-test="error"]')
   },
   login(username: string, passward: string) {
-    cy.session(`user ${username} session`, () => {
-      cy.visit('/')
-      LoginPage.getUserName().type(username)
-      LoginPage.getPassword().type(passward, { log: false })
-      LoginPage.getLoginBtn().click()
-      cy.location('pathname').should('eq', '/inventory.html')
-    })
+    cy.session(
+      `user ${username} session`,
+      () => {
+        cy.visit('/')
+        LoginPage.getUserName().type(username)
+        LoginPage.getPassword().type(passward, { log: false })
+        LoginPage.getLoginBtn().click()
+        cy.location('pathname').should('eq', '/inventory.html')
+      },
+      {
+        validate() {
+          // cy.visit('/inventory.html')
+          // cy.location('pathname').should('eq', '/inventory.html')
+          cy.getCookie('session-username').then((cookie) => {
+            return cookie !== null
+          })
+        },
+      },
+    )
   },
   assertNoError() {
     cy.log('**there are no errors**')

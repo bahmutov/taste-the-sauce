@@ -10,5 +10,5 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node"
   },
-  "include": ["cypress/e2e/*.ts"]
+  "include": ["cypress/e2e/*.ts", "cypress/support/*.ts"]
 }
