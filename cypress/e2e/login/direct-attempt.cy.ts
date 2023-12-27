@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { LoginPage } from './login.page'
+import { LoginPage } from '../../support/pages/login.page'
 
 describe('anonymous user', () => {
   it('gets an error trying to visit the inventory page', () => {
@@ -16,7 +16,7 @@ describe('anonymous user', () => {
       .should('be.visible')
       .and('include.text', 'Epic sadface')
       .and('include.text', 'inventory.html')
-    LoginPage.getUserName().should('have.class', 'error')
+    LoginPage.getUsername().should('have.class', 'error')
     LoginPage.getPassword().should('have.class', 'error')
   })
 })
@@ -40,7 +40,7 @@ describe('Login form', () => {
     // enter username "name" into the input field
     // and click the login button
     // without entering the password
-    LoginPage.getUserName().type('name')
+    LoginPage.getUsername().type('name')
     LoginPage.getLoginBtn().click()
     // the login page should show the error
     // with text "Epic sadface: Password is required"

@@ -7,12 +7,10 @@
 /// <reference types="cypress-data-session" />
 
 // https://github.com/bahmutov/cypress-map
-import 'cypress-map'
-import 'cypress-data-session'
-import { LoginPage } from './login.page'
+
+import { LoginPage } from '../../support/pages/login.page'
 
 // https://www.chaijs.com/plugins/chai-sorted/
-chai.use(require('chai-sorted'))
 
 function sortBy(order: string) {
   expect(order).to.be.oneOf(['lohi', 'hilo', 'az', 'za'])
@@ -84,7 +82,7 @@ describe('sorting', { testIsolation: true }, () => {
     cy.session('userSession', () => {
       cy.log('**log in**')
       cy.visit('/')
-      LoginPage.getUserName().type('standard_user')
+      LoginPage.getUsername().type('standard_user')
       LoginPage.getPassword().type('secret_sauce')
       LoginPage.getLoginBtn().click()
       cy.location('pathname').should('equal', '/inventory.html')

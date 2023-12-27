@@ -1,5 +1,4 @@
-import 'cypress-map'
-import item from '../fixtures/bike-light.json'
+import item from '@fixtures/bike-light.json'
 
 beforeEach(() => {
   cy.log('**log in**')

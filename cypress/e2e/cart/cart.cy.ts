@@ -1,8 +1,8 @@
-import { LoginPage } from './login.page'
-import { InventoryPage } from './inventory.page'
-import { LoginInfo } from '.'
-import 'cypress-map'
-import invntory from '../fixtures/inventory.json'
+import { LoginPage } from '@support/pages/login.page'
+import { InventoryPage } from '@support/pages/inventory.page'
+import { LoginInfo } from '..'
+
+import invntory from '@fixtures/inventory.json'
 const { _ } = Cypress
 
 describe('Cart', () => {

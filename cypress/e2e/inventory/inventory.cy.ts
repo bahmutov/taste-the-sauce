@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import inventory from '../fixtures/inventory.json'
+import inventory from '@fixtures/inventory.json'
 
 beforeEach(() => {
   cy.log('**log in**')

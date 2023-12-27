@@ -11,5 +11,6 @@ declare namespace Cypress {
      *  cy.get('form').fillForm({ '#name': 'Joe' }).submit()
      */
     fillForm(selectorsValue: object): Chainable<JQuery<HTMLFormElement>>
+    getByTest(testId: string): Chainable<JQuery<HTMLFormElement>>
   }
 }

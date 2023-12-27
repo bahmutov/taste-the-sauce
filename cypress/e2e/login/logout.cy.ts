@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { LoginPage } from './login.page'
+import { LoginPage } from '../../support/pages/login.page'
 
 describe('log out', () => {
   it('logs out', () => {

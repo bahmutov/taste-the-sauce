@@ -1,9 +1,7 @@
 // enables intelligent code completion for Cypress commands
 // https://on.cypress.io/intelligent-code-completion
-/// <reference types="cypress" />
-import 'cypress-map'
+// /// <reference types="cypress" />
 const { _ } = Cypress
-chai.use(require('chai-sorted'))
 
 it('confirms the item with the lowest price', () => {
   cy.visit('/')

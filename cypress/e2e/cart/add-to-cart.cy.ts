@@ -1,5 +1,5 @@
-import { LoginPage } from './login.page'
-import { InventoryPage } from './inventory.page'
+import { LoginPage } from '../../support/pages/login.page'
+import { InventoryPage } from '../../support/pages/inventory.page'
 
 describe('Cart', () => {
   // create a small type on the fly using jsdoc comment

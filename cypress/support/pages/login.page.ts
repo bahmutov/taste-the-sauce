@@ -2,7 +2,12 @@
 /// <reference types="cypress" />
 
 export const LoginPage = {
-  getUserName() {
+  selectors: {
+    username: '[data-test="username"]',
+    password: '[data-test="password"]',
+    form: '.login-box form',
+  },
+  getUsername() {
     return cy.get('[data-test="username"]')
   },
   getPassword: () => {
@@ -19,9 +24,15 @@ export const LoginPage = {
       `user ${username} session`,
       () => {
         cy.visit('/')
-        LoginPage.getUserName().type(username)
-        LoginPage.getPassword().type(passward, { log: false })
-        LoginPage.getLoginBtn().click()
+        // LoginPage.getUserName().type(username)
+        // LoginPage.getPassword().type(passward, { log: false })
+        // LoginPage.getLoginBtn().click()
+        cy.get(LoginPage.selectors.form)
+          .fillForm({
+            [LoginPage.selectors.username]: username,
+            [LoginPage.selectors.password]: passward,
+          })
+          .submit()
         cy.location('pathname').should('eq', '/inventory.html')
       },
       {
@@ -38,12 +49,12 @@ export const LoginPage = {
   assertNoError() {
     cy.log('**there are no errors**')
     this.getError().should('not.exist') // can also use LoginPage.getError().should('not.exist')
-    LoginPage.getUserName().should('not.have.class', 'error') // can also use this.getUserName()
+    LoginPage.getUsername().should('not.have.class', 'error') // can also use this.getUserName()
     this.getPassword().should('not.have.class', 'error')
   },
   assertShowError(msg: string) {
     LoginPage.getError().should('be.visible').and('include.text', msg)
-    LoginPage.getUserName().should('have.class', 'error')
+    LoginPage.getUsername().should('have.class', 'error')
     LoginPage.getPassword().should('have.class', 'error')
   },
-}
+} as const
