@@ -33,12 +33,14 @@ const CartItem = ({ item, history, showButton }) => {
     return (
       <div
         className="cart_item"
+        data-test="CartItem"
         data-item-id={item.id}
         data-item-quantity={shoppingCartItem.n}
       >
         <input
           type="number"
           className="cart_quantity"
+          data-test="CartQuantity"
           value={shoppingCartItem.n}
           onChange={(evt) => {
             console.log(evt.target.valueAsNumber)

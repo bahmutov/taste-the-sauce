@@ -1,7 +1,5 @@
 .shopping_cart_link {
-  background: url("../assets/img/cart.png") no-repeat center center;
-  background: url("../assets/svg/cart3x.svg") no-repeat center center,
-    linear-gradient(transparent, transparent);
+  background: url('../assets/img/cart.png') no-repeat center center;
   height: 40px;
   width: 40px;
   display: block;

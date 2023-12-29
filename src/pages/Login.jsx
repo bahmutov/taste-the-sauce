@@ -20,6 +20,7 @@ function Login(props) {
 
   useEffect(() => {
     if (location.state) {
+      console.log(location.state)
       return setError(
         `You can only access '${location.state.from.pathname}' when you are logged in.`,
       )
@@ -75,7 +76,7 @@ function Login(props) {
       <div className="login_wrapper">
         <div className="login_wrapper-inner">
           <div id="login_button_container" className="form_column">
-            <div className="login-box">
+            <div className="login-box" data-test="LoginForm">
               <form onSubmit={handleSubmit}>
                 <InputError
                   isError={Boolean(error)}
@@ -121,6 +122,12 @@ function Login(props) {
           <div className="bot_column" />
         </div>
         <div className="login_credentials_wrap">
+          <div className="login_links">
+            <div>
+              Jump straight to <a href="/cart.html">cart</a>,{' '}
+              <a href="/inventory.html">inventory</a>
+            </div>
+          </div>
           <div className="login_credentials_wrap-inner">
             <div id="login_credentials" className="login_credentials">
               <h4>Accepted usernames are:</h4>

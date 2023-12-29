@@ -8,7 +8,7 @@ import { ROUTES } from '../utils/Constants'
 import Button, { BUTTON_SIZES, BUTTON_TYPES } from './Button'
 
 const InventoryListItem = (props) => {
-  const { desc, id, image_url, history, name, price } = props
+  const { desc, id, image_url, history, name, price, dataTestId } = props
   const [itemInCart, setItemInCart] = useState(ShoppingCart.isItemInCart(id))
 
   const addToCart = (itemId) => {
@@ -22,7 +22,9 @@ const InventoryListItem = (props) => {
     console.log('add to cart item %d', itemId)
     ShoppingCart.addItem(itemId)
     setItemInCart(true)
-    dataLayer.push({ event: 'addToCart', itemId })
+    if (typeof dataLayer !== 'undefined') {
+      dataLayer.push({ event: 'addToCart', itemId })
+    }
   }
 
   const removeFromCart = (itemId) => {
@@ -35,7 +37,9 @@ const InventoryListItem = (props) => {
 
     ShoppingCart.removeItem(itemId)
     setItemInCart(false)
-    dataLayer.push({ event: 'removeFromCart', itemId })
+    if (typeof dataLayer !== 'undefined') {
+      dataLayer.push({ event: 'removeFromCart', itemId })
+    }
   }
 
   let linkId = id
@@ -56,7 +60,7 @@ const InventoryListItem = (props) => {
         label={label}
         onClick={onClick}
         size={BUTTON_SIZES.SMALL}
-        testId={testId}
+        testId="ItemActionButton"
         type={type}
       />
     )
@@ -64,7 +68,7 @@ const InventoryListItem = (props) => {
   const url = isProblemUser() ? 'sl-404.jpg' : image_url
 
   return (
-    <div className="inventory_item" data-itemid={id}>
+    <div className="inventory_item" data-test={dataTestId} data-itemid={id}>
       <div className="inventory_item_img">
         <a
           href="#"
@@ -86,6 +90,7 @@ const InventoryListItem = (props) => {
           <a
             href="#"
             id={`item_${id}_title_link`}
+            data-test="ItemTitle"
             onClick={(evt) => {
               evt.preventDefault()
               history.push(itemLink)
@@ -96,8 +101,15 @@ const InventoryListItem = (props) => {
           <div className="inventory_item_desc">{desc}</div>
         </div>
         <div className="pricebar">
-          <div className="inventory_item_price">${price}</div>
-          <ButtonType id={id} itemInCart={itemInCart} item={name} />
+          <div className="inventory_item_price" data-test="ItemPrice">
+            ${price}
+          </div>
+          <ButtonType
+            id={id}
+            itemInCart={itemInCart}
+            item={name}
+            dataTestId="AddToCart"
+          />
         </div>
       </div>
     </div>

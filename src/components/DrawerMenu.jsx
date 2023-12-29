@@ -1,35 +1,29 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-import { slide as Menu } from "react-burger-menu";
-import { ShoppingCart } from "../utils/shopping-cart";
-import { ROUTES } from "../utils/Constants";
-import { isProblemUser, removeCredentials } from "../utils/Credentials";
-import menuClosePng from "../assets/img/close.png";
-import menuCloseSvg from "../assets/svg/close@3x.svg";
-import menuIconPng from "../assets/img/menu.png";
-import menuIconSvg from "../assets/svg/menu3x.svg";
-import "./DrawerMenu.css";
+import React from 'react'
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { slide as Menu } from 'react-burger-menu'
+import { ShoppingCart } from '../utils/shopping-cart'
+import { ROUTES } from '../utils/Constants'
+import { isProblemUser, removeCredentials } from '../utils/Credentials'
+import menuClosePng from '../assets/img/close.png'
+import menuIconPng from '../assets/img/menu.png'
+import './DrawerMenu.css'
 
 const DrawerMenu = ({ history }) => {
   const resetStorage = () => {
     // Wipe out our shopping cart now
-    ShoppingCart.resetCart();
-  };
+    ShoppingCart.resetCart()
+  }
   const aboutLink = isProblemUser()
-    ? "https://saucelabs.com/error/404"
-    : "https://saucelabs.com/";
+    ? 'https://saucelabs.com/error/404'
+    : 'https://saucelabs.com/'
 
   return (
     <Menu
-      customBurgerIcon={
-        <img src={menuIconPng} srcSet={menuIconSvg} alt="Open Menu" />
-      }
-      customCrossIcon={
-        <img src={menuClosePng} srcSet={menuCloseSvg} alt="Close Menu" />
-      }
-      outerContainerId={"page_wrapper"}
-      pageWrapId={"contents_wrapper"}
+      customBurgerIcon={<img src={menuIconPng} alt="Open Menu" />}
+      customCrossIcon={<img src={menuClosePng} alt="Close Menu" />}
+      outerContainerId={'page_wrapper'}
+      pageWrapId={'contents_wrapper'}
       noOverlay
     >
       <a
@@ -37,8 +31,8 @@ const DrawerMenu = ({ history }) => {
         className="menu-item"
         href="#"
         onClick={(evt) => {
-          evt.preventDefault();
-          history.push(ROUTES.INVENTORY);
+          evt.preventDefault()
+          history.push(ROUTES.INVENTORY)
         }}
       >
         All Items
@@ -51,9 +45,9 @@ const DrawerMenu = ({ history }) => {
         className="menu-item"
         href="#"
         onClick={(evt) => {
-          evt.preventDefault();
-          removeCredentials();
-          history.push(ROUTES.LOGIN);
+          evt.preventDefault()
+          removeCredentials()
+          history.push(ROUTES.LOGIN)
         }}
       >
         Logout
@@ -63,15 +57,15 @@ const DrawerMenu = ({ history }) => {
         className="menu-item"
         href="#"
         onClick={(evt) => {
-          evt.preventDefault();
-          resetStorage();
+          evt.preventDefault()
+          resetStorage()
         }}
       >
         Reset App State
       </a>
     </Menu>
-  );
-};
+  )
+}
 DrawerMenu.propTypes = {
   /**
    * The history
@@ -79,6 +73,6 @@ DrawerMenu.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-};
+}
 
-export default withRouter(DrawerMenu);
+export default withRouter(DrawerMenu)

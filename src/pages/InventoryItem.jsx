@@ -14,9 +14,9 @@ export const InventoryItem = (props) => {
     window.scrollTo(0, 0)
   }, [])
   const { history } = props
-  // Get our queryparams now
+  // Get our query params now
   const queryParams = new URLSearchParams(
-    window.location.search || props.search,
+    props.search || window.location.search,
   )
   let inventoryId = -1
   let item
@@ -61,7 +61,9 @@ export const InventoryItem = (props) => {
 
     ShoppingCart.addItem(itemId)
     setItemInCart(true)
-    dataLayer.push({ event: 'addToCart', itemId })
+    if (typeof dataLayer !== 'undefined') {
+      dataLayer.push({ event: 'addToCart', itemId })
+    }
   }
 
   const removeFromCart = (itemId) => {
@@ -74,7 +76,9 @@ export const InventoryItem = (props) => {
 
     ShoppingCart.removeItem(itemId)
     setItemInCart(false)
-    dataLayer.push({ event: 'removeFromCart', itemId })
+    if (typeof dataLayer !== 'undefined') {
+      dataLayer.push({ event: 'removeFromCart', itemId })
+    }
   }
 
   const ButtonType = ({ id, item, itemInCart }) => {
@@ -101,13 +105,27 @@ export const InventoryItem = (props) => {
         <HeaderContainer
           customClass="inventory_details"
           secondaryLeftComponent={
-            <Button
-              customClass="inventory_details_back_button"
-              label="Back to products"
-              onClick={goBack}
-              type={BUTTON_TYPES.BACK}
-              testId="back-to-products"
-            />
+            <>
+              <div id="breadcrumbs" className="breadcrumbs">
+                <a
+                  href="#"
+                  onClick={(evt) => {
+                    evt.preventDefault()
+                    goBack()
+                  }}
+                >
+                  Inventory
+                </a>{' '}
+                / {item.name}
+              </div>
+              <Button
+                customClass="inventory_details_back_button"
+                label="Back to products"
+                onClick={goBack}
+                type={BUTTON_TYPES.BACK}
+                testId="back-to-products"
+              />
+            </>
           }
         />
         <div id="inventory_item_container" className="inventory_item_container">

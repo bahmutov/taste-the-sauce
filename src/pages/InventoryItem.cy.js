@@ -16,6 +16,7 @@ describe('InventoryItem', { viewportHeight: 1000 }, () => {
     // pick a random number between 0 and the inventory length
     // using Lodash Cypress._.random method
     const id = Cypress._.random(0, InventoryData.length - 1)
+    cy.log(`showing item ${id}`)
     // mount the InventoryItem component
     // passing your own search string "id=..."
     // Tip: modify the InventoryItem to read the window.location.search

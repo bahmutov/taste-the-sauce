@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "types": ["cypress", "cypress-map"],
+    "types": ["cypress", "cypress-map", "cypress-real-events"],
     "target": "es2016",
     "strict": true,
     "allowJs": true,
@@ -20,6 +20,7 @@
     "cypress/support/**/*.ts",
     "cypress/e2e/**/*.js",
     "cypress/e2e/**/*.ts",
-    "src/**/*.cy.js"
+    "src/**/*.cy.js",
+    "src/pages/InventoryItem.cy.js"
   ]
 }

@@ -11,8 +11,6 @@ const HeaderContainer = ({
   secondaryRightComponent,
   secondaryTitle,
 }) => {
-  const HeaderBot = () => <div className="peek" />
-
   const LeftComponent = ({ leftComponent }) => (
     <div className="left_component">{React.cloneElement(leftComponent)}</div>
   )
@@ -42,7 +40,6 @@ const HeaderContainer = ({
           <LeftComponent leftComponent={secondaryLeftComponent} />
         )}
         {secondaryTitle && <Title title={secondaryTitle} />}
-        {secondaryHeaderBot && <HeaderBot />}
         {secondaryRightComponent && (
           <RightComponent rightComponent={secondaryRightComponent} />
         )}
